@@ -18,7 +18,7 @@
     });
   };
 
-  Permit.createTable = function(callback) {
+  Permit.createTable = function() {
     webDB.execute(
       'CREATE TABLE IF NOT EXISTS articles (' +
         'id INTEGER PRIMARY KEY, ' +
@@ -32,10 +32,13 @@
         'longitude FLOAT,' +
         'permit_and_complaint_status_url VARCHAR(512),' +
         'permit_type VARCHAR(100),' +
-        'value INTEGER);',
-      callback
+        'value INTEGER);'
+      // callback
     );
   };
+
+  Permit.getData();
+  Permit.createTable();
 
   module.Permit = Permit;
 })(window);
