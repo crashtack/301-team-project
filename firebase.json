@@ -1,0 +1,9 @@
+{
+  "database": {
+    "rules": "database.rules.json"
+  },
+  "hosting": {
+    "public": "code"
+  },
+  "ignore": [ "**/node_modules/**"]
+}
