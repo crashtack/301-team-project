@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="/styles/base.css">
     <link rel="stylesheet" href="/styles/layout.css">
     <link rel="stylesheet" href="/styles/modules.css">
+    <link rel="icon" type="image/x-icon" href="https://i.imgur.com/7v5ASc8.png">
     <!-- <link rel="icon" type="image/x-icon" href="https://avatars2.githubusercontent.com/u/18607604?v=3&s=200"> -->
 
 
@@ -20,33 +21,35 @@
     <h2>Look! A spinner! ...</h2>
     <img src="vendor/assets/gears.gif">
   </section>
-  </body>
 
   <main>
+    <div id="map"></div>
+    <!-- load in API, with token that you generated from the google api site -->
+    <!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBxQPYVhgMOtRtlWJC1nJ59PYTkr2XtuMU&v=3.exp&libraries=visualization"></script> -->
+    <!-- <script src="map.js"></script> -->
   </main>
+
+  </body>
+
 
 
   <footer>
-        &copy; 2016 dbcode | 301-team-project | ???????-??????
+        &copy; 2016 NosyNeighbor LLC | 301-team-project | ???????-??????
       </footer>
 
       <script src="/vendor/scripts/jquery-2.1.4.js"></script>
       <script src="/vendor/scripts/handlebars.js"></script>
-      <script src="/vendor/scripts/marked.js"></script>
       <script src="/vendor/scripts/html5sql.js"></script>
       <script src="/vendor/scripts/webdb.js"></script>
       <script src="/vendor/scripts/page.js"></script>
-
+      <script src="https://www.gstatic.com/firebasejs/live/3.0/firebase.js"></script>
+      <script src="firebaseConfig.js"></script>
       <!-- Model files: -->
-      <script src="/scripts/models/article.js"></script>
-      <script src="/scripts/models/repo.js"></script>
+      <script src="/scripts/models/permit.js"></script>
       <!-- View files: -->
-      <script src="/scripts/views/articleView.js"></script>
-      <script src="/scripts/views/repoView.js"></script>
+      <script src="/scripts/views/permitView.js"></script>
       <!-- Controller files: -->
-      <script src="/scripts/controllers/articleController.js"></script>
-      <script src="/scripts/controllers/aboutController.js"></script>
-      <script src="/scripts/controllers/adminController.js"></script>
-      <script src="/scripts/controllers/routes.js"></script>
+      <script src="/scripts/controllers/permitController.js"></script>
+      <!-- <script src="/scripts/controllers/routes.js"></script> -->
     </body>
   </html>
