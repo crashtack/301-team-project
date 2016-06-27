@@ -9,22 +9,22 @@
   Permit.all = [];
 
   Permit.getData = function() {
-    // $.get('https://data.seattle.gov/resource/94s7-sxg7.json?$$app_token=gdkMQ6LU9xq4ZonjF6aDFun5l', function(data) {
-    $.get('https://data.seattle.gov/resource/94s7-sxg7.json?$$app_token=gdkMQ6LU9xq4ZonjF6aDFun5l&$limit=50&permit_type=Construction&action_type=NEW', function(data) {
-      //console.log(data);
-      data.forEach( function (singlePermit) {
-        var permit = new Permit(singlePermit);
-        Permit.all.push(permit);
-        permit.insertPermit();
-      });
-    });    // $.get('https://data.seattle.gov/data/resource/94s7-sxg7.json?$$app_token=SEATTLE_GOV_TOKEN&permit_type=Construction&action_type=NEW', function(data) {
-    // $.ajax({
-    //   url: 'https://data.seattle.gov/resource/94s7-sxg7.json?permit_type=Construction&action_type=NEW',
-    //   method: 'GET',
-    //   success: function(data) {
-    //     Permit.all = data;
-    //   }
-    // });
+    webDB.execute('SELECT * FROM permitdata', function(rows) {
+      if (rows.length) {
+        console.log('rows populated');
+        map.fetchLocations();
+      } else {
+        $.get('https://data.seattle.gov/resource/94s7-sxg7.json?$$app_token=gdkMQ6LU9xq4ZonjF6aDFun5l&$limit=500&permit_type=Construction&action_type=NEW', function(data) {
+        // console.log(data);
+          data.forEach(function(singlePermit) {
+            var permit = new Permit(singlePermit);
+            Permit.all.push(permit);
+            permit.insertPermit();
+          });
+          map.fetchLocations();
+        });
+      }
+    });
   };
 
   Permit.createTable = function() {
@@ -59,8 +59,8 @@
     );
   };
 
-  Permit.getData();
   Permit.createTable();
+  Permit.getData();
 
   module.Permit = Permit;
 })(window);
