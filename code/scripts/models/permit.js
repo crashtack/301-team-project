@@ -9,18 +9,22 @@
   Permit.all = [];
 
   Permit.getData = function() {
-    $.ajax({
-      url: 'https://data.seattle.gov/resource/94s7-sxg7.json?permit_type=Construction&action_type=NEW',
-      method: 'GET',
-      success: function(data) {
-        Permit.all = data;
-      }
-    });
+    // $.get('https://data.seattle.gov/resource/94s7-sxg7.json?$$app_token=gdkMQ6LU9xq4ZonjF6aDFun5l', function(data) {
+    $.get('https://data.seattle.gov/resource/94s7-sxg7.json?$$app_token=gdkMQ6LU9xq4ZonjF6aDFun5l&$limit=50000&permit_type=Construction&action_type=NEW', function(data) {
+    console.log(data);
+    });    // $.get('https://data.seattle.gov/data/resource/94s7-sxg7.json?$$app_token=SEATTLE_GOV_TOKEN&permit_type=Construction&action_type=NEW', function(data) {
+    // $.ajax({
+    //   url: 'https://data.seattle.gov/resource/94s7-sxg7.json?permit_type=Construction&action_type=NEW',
+    //   method: 'GET',
+    //   success: function(data) {
+    //     Permit.all = data;
+    //   }
+    // });
   };
 
   Permit.createTable = function() {
     webDB.execute(
-      'CREATE TABLE IF NOT EXISTS articles (' +
+      'CREATE TABLE IF NOT EXISTS permitdata (' +
         'id INTEGER PRIMARY KEY, ' +
         'address VARCHAR(255) NOT NULL, ' +
         'applicant_name VARCHAR(255) NOT NULL, ' +
@@ -32,10 +36,7 @@
         'longitude FLOAT,' +
         'permit_and_complaint_status_url VARCHAR(512),' +
         'permit_type VARCHAR(100),' +
-        'value INTEGER);',
-        function () {
-          console.log("Created table!");
-        };
+        'value INTEGER);'
 
       // callback
     );

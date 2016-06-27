@@ -14,14 +14,14 @@ var requestProxy = require('express-request-proxy'),
 var proxySeattle = function(request, response) {
   console.log('Routing Seattle request for', request.params[0]);
   (requestProxy({
-    url: 'https://data.seattle.gov/resource/' + request.params[0],
+    url: 'https://data.seattle.gov/' + request.params[0],
     headers: { "X-App-Token": process.env.SEATTLE_GOV_TOKEN }
   }))(request, response);
 };
 
 // app.get('/github/*', proxyGitHub);
 
-app.get('*', proxySeattle)
+app.get('/data/*', proxySeattle)
 
 app.use(express.static('./'));
 
