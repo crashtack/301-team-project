@@ -50,6 +50,24 @@
     map: map
   });
 
+  // --------Droping Pins--------------------------
+  map.fetchLocations = function () {
+    webDB.execute('SELECT * FROM permitdata', function(rows) {
+      rows.forEach(function(row) {
+        console.log('lat= ', row.latitude);
+        console.log('lon= ', row.longitude);
+        var marker = new google.maps.Marker({
+          position: {lat: row.latitude, lng: row.longitude},
+          map: map
+        });
+
+      });
+
+          console.log(rows);
+          //callback();
+    });
+  };
+
   // -----------------------------------------------
   // Adding code for Address Search Bar
 
