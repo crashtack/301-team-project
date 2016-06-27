@@ -11,7 +11,6 @@
   Permit.getData = function() {
     // $.get('https://data.seattle.gov/resource/94s7-sxg7.json?$$app_token=gdkMQ6LU9xq4ZonjF6aDFun5l', function(data) {
     $.get('https://data.seattle.gov/resource/94s7-sxg7.json?$$app_token=gdkMQ6LU9xq4ZonjF6aDFun5l&$limit=50000&permit_type=Construction&action_type=NEW', function(data) {
-      Permit.all = data;
       console.log(data);
       data.forEach( function (singlePermit) {
         var permit = new Permit(singlePermit);
