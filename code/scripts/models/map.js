@@ -35,7 +35,7 @@
     ZoomControlOptions: {
       position: google.maps.ControlPosition.RIGHT_CENTER
     }
-  }
+  };
 
   var map = new google.maps.Map(document.getElementById('map'), mapOptions);
 
@@ -54,8 +54,8 @@
   map.fetchLocations = function () {
     webDB.execute('SELECT * FROM permitdata', function(rows) {
       rows.forEach(function(row) {
-        console.log('lat= ', row.latitude);
-        console.log('lon= ', row.longitude);
+        // console.log('lat= ', row.latitude);
+        // console.log('lon= ', row.longitude);
         var marker = new google.maps.Marker({
           position: {lat: row.latitude, lng: row.longitude},
           map: map
@@ -63,7 +63,7 @@
 
       });
 
-          console.log(rows);
+      console.log(rows);
           //callback();
     });
   };
@@ -88,5 +88,5 @@
   //Create the autocomplete object.
   var autocomplete = new google.maps.places.Autocomplete(input, searchOptions);
 
-module.map = map;
+  module.map = map;
 })(window);
