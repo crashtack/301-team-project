@@ -32,7 +32,11 @@
         'longitude FLOAT,' +
         'permit_and_complaint_status_url VARCHAR(512),' +
         'permit_type VARCHAR(100),' +
-        'value INTEGER);'
+        'value INTEGER);',
+        function () {
+          console.log("Created table!");
+        };
+
       // callback
     );
   };
