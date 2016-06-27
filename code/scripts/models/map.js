@@ -1,5 +1,5 @@
 (function(module) {
-
+  var markers = [];
   var stylesArray = [
     {
       featureType: "all",
@@ -25,7 +25,6 @@
     }
   ];
 
-
   var mapOptions = {
     zoom: 15,
     styles: stylesArray,
@@ -38,6 +37,8 @@
   };
 
   var map = new google.maps.Map(document.getElementById('map'), mapOptions);
+
+  infoWindow = new google.maps.InfoWindow();
 
   google.maps.event.addDomListener(window, 'resize', function() {
     var center = map.getCenter();
@@ -56,11 +57,16 @@
       rows.forEach(function(row) {
         // console.log('lat= ', row.latitude);
         // console.log('lon= ', row.longitude);
+        var html = '<b>' + row.address + '</b> <br/>' + row.description;
         var marker = new google.maps.Marker({
           position: {lat: row.latitude, lng: row.longitude},
           map: map
         });
-
+        google.maps.event.addListener(marker, 'click', function() {
+          infoWindow.setContent(html);
+          infoWindow.open(map, marker);
+        });
+        markers.push(marker);
       });
 
       console.log(rows);
