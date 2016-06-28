@@ -49,7 +49,7 @@
     bounds: defaultBounds
   };
 
-  infoWindow = new google.maps.InfoWindow({maxWidth: 150});
+  infoWindow = new google.maps.InfoWindow({maxWidth: 200});
 
   google.maps.event.addDomListener(window, 'resize', function() {
     var center = map.getCenter();
@@ -77,7 +77,7 @@
     webDB.execute(query, function(rows) {
       rows.forEach(function(row) {
         if (row.latitude != 'undefined') {
-          var html = '<strong>' + row.address + '</strong> <br/>' + row.description + '<br/> <a href="/info">Save Record</a>';
+          var html = '<strong>' + row.address + '</strong> <br/>' + row.description + '</strong> <br/> Status: ' + row.status + '<br/> <a href="/info">Save Record</a>';
           var marker = new google.maps.Marker({
             position: {lat: row.latitude, lng: row.longitude},
             map: map
