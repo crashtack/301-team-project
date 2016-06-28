@@ -36,10 +36,6 @@
     }
   };
 
-  var map = new google.maps.Map(document.getElementById('map'), mapOptions);
-
-  infoWindow = new google.maps.InfoWindow();
-
   google.maps.event.addDomListener(window, 'resize', function() {
     var center = map.getCenter();
     google.maps.event.trigger(map, 'resize');
