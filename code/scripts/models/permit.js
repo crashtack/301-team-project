@@ -12,16 +12,17 @@
     webDB.execute('SELECT * FROM permitdata', function(rows) {
       if (rows.length) {
         console.log('rows populated');
-        map.fetchLocations();
+        map.fetchLocations('SELECT * FROM permitdata');
       } else {
         $.get('https://data.seattle.gov/resource/94s7-sxg7.json?$$app_token=gdkMQ6LU9xq4ZonjF6aDFun5l&$limit=500&permit_type=Construction&action_type=NEW', function(data) {
-        // console.log(data);
-          data.forEach(function(singlePermit) {
-            var permit = new Permit(singlePermit);
-            Permit.all.push(permit);
-            permit.insertPermit();
-          });
-          map.fetchLocations();
+          Permit.all = data;
+          if (!rows.length) {
+            Permit.all.forEach(function(singlePermit) {
+              var permit = new Permit(singlePermit);
+              permit.insertPermit();
+            });
+          }
+          map.fetchLocations('SELECT * FROM permitdata');
         });
       }
     });
