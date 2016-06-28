@@ -49,7 +49,7 @@
     bounds: defaultBounds
   };
 
-  infoWindow = new google.maps.InfoWindow({maxWidth: 200});
+  infoWindow = new google.maps.InfoWindow({maxWidth: 150});
 
   google.maps.event.addDomListener(window, 'resize', function() {
     var center = map.getCenter();
@@ -57,19 +57,18 @@
     map.setCenter(center);
   });
 
-  // var marker = new google.maps.Marker({
-  //   position: {lat: 47.618217, lng: -122.351832},
-  //   map: map
-  // });
+  var marker = new google.maps.Marker({
+    position: {lat: 47.618217, lng: -122.351832},
+    map: map
+  });
 
   map.requestLocation = function (address) {
     console.log('test');
     $.get('https://maps.googleapis.com/maps/api/geocode/json?address=' + address + '&key=AIzaSyD_yMtkI6CNN6o8k1FaHEUh9jRx343nYKQ', function(data) {
       // console.log(data.results[0].geometry.location);
       // return data.results[0].geometry.location;
-      map.nearbyLocations(data.results[0].geometry.location, 1, 50);
+      Permit.calcDistance(data.results[0].geometry.location);
     });
-    // .done();
   };
 
   // --------Droping Pins--------------------------
@@ -77,7 +76,7 @@
     webDB.execute(query, function(rows) {
       rows.forEach(function(row) {
         if (row.latitude != 'undefined') {
-          var html = '<strong>' + row.address + '</strong> <br/>' + row.description + '</strong> <br/> Status: ' + row.status + '<br/> <a href="/info">Save Record</a>';
+          var html = '<strong>' + row.address + '</strong> <br/>' + row.description + '<br/> <a href="/info">Save Record</a>';
           var marker = new google.maps.Marker({
             position: {lat: row.latitude, lng: row.longitude},
             map: map
@@ -96,7 +95,6 @@
             };
           });
           markers.push(marker);
-          $('#spinner-container').fadeOut();
         }
       });
     });
@@ -134,19 +132,6 @@
 
     // Listen for the event fired when the user selects a prediction and retrieve
     // more details for that place.
-  map.nearbyLocations = function(center, radius, limit) {
-    console.log(center);
-    map.fetchLocations('SELECT id, (3959 * acos(cos(radians(' + center.lat + ')) * cos(radians(lat)) * cos(radians(lng) - radians(- ' + center.lng + ')) + sin(radians(' + center.lat + ')) * sin(radians(lat)))) AS distance FROM permitdata HAVING distance < ' + radius + ' ORDER BY distance LIMIT 0 , ' + limit + ';');
-    // webDB.execute(
-    //   [
-    //     {
-    //       'sql': 'SELECT id, (3959 * acos(cos(radians(?)) * cos(radians(lat)) * cos(radians(lng ) - radians(-?)) + sin(radians(?)) * sin(radians(lat)))) AS distance FROM markers HAVING distance < ? ORDER BY distance LIMIT 0 , 50;',
-    //       'data': [center.lat, center.lng, center.lat, radius]
-    //     }
-    //   ]
-    // );
-  };
-
     searchBox.addListener('places_changed', function() {
       var places = searchBox.getPlaces();
       console.log(places);
@@ -155,10 +140,7 @@
         marker.setMap(null);
       });
       markers = [];
-      console.log(places[0].name);
-      console.log(map.requestLocation(places[0].name, 1, 50));
       map.requestLocation(places[0].name);
-        // map.nearbyLocations(location, 1, 50);
       if (places.length == 0) {
         return;
       }
