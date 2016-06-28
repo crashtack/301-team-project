@@ -65,11 +65,11 @@
   map.requestLocation = function (address) {
     console.log('test');
     $.get('https://maps.googleapis.com/maps/api/geocode/json?address=' + address + '&key=AIzaSyD_yMtkI6CNN6o8k1FaHEUh9jRx343nYKQ', function(data) {
-
-      console.log(data.results[0].geometry.location);
-      return data.results[0].geometry.location;
+      // console.log(data.results[0].geometry.location);
+      // return data.results[0].geometry.location;
+      map.nearbyLocations(data.results[0].geometry.location, 1, 50);
     });
-    // .done(map.nearbyLocations(data.results[0].geometry.location, 1, 50));
+    // .done();
   };
 
   // --------Droping Pins--------------------------
@@ -127,43 +127,41 @@
     map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
 
     // Bias the SearchBox results towards current map's viewport.
-    map.addListener('bounds_changed', function() {
+  map.addListener('bounds_changed', function() {
+    searchBox.setBounds(map.getBounds());
+  });
 
-      searchBox.setBounds(map.getBounds());
-    });
-
-    var markers = [];
     // Listen for the event fired when the user selects a prediction and retrieve
     // more details for that place.
-    map.nearbyLocations = function(center, radius, limit) {
-      console.log(center);
-      webDB.execute(
-        [
-          {
-            'sql': 'SELECT id, (3959 * acos(cos(radians(?)) * cos(radians(lat)) * cos(radians(lng ) - radians(-?)) + sin(radians(?)) * sin(radians(lat)))) AS distance FROM markers HAVING distance < ? ORDER BY distance LIMIT 0 , 50;',
-            'data': [center.lat, center.lng, center.lat, radius]
-          }
-        ]
-      );
-    };
+  map.nearbyLocations = function(center, radius, limit) {
+    console.log(center);
+    map.fetchLocations('SELECT id, (3959 * acos(cos(radians(' + center.lat + ')) * cos(radians(lat)) * cos(radians(lng) - radians(- ' + center.lng + ')) + sin(radians(' + center.lat + ')) * sin(radians(lat)))) AS distance FROM permitdata HAVING distance < ' + radius + ' ORDER BY distance LIMIT 0 , ' + limit + ';');
+    // webDB.execute(
+    //   [
+    //     {
+    //       'sql': 'SELECT id, (3959 * acos(cos(radians(?)) * cos(radians(lat)) * cos(radians(lng ) - radians(-?)) + sin(radians(?)) * sin(radians(lat)))) AS distance FROM markers HAVING distance < ? ORDER BY distance LIMIT 0 , 50;',
+    //       'data': [center.lat, center.lng, center.lat, radius]
+    //     }
+    //   ]
+    // );
+  };
 
     searchBox.addListener('places_changed', function() {
       var places = searchBox.getPlaces();
       console.log(places);
-      var location = map.requestLocation(places.name);
-      console.log(location);
-      // map.nearbyLocations(location, 1, 50);
-      if (places.length == 0) {
-        return;
-      }
-
       // Clear out the old markers.
       markers.forEach(function(marker) {
         marker.setMap(null);
       });
       markers = [];
-
-      // For each place, get the icon, name and location.
+      console.log(places[0].name);
+      console.log(map.requestLocation(places[0].name, 1, 50));
+      map.requestLocation(places[0].name);
+        // map.nearbyLocations(location, 1, 50);
+      if (places.length == 0) {
+        return;
+      }
+        // For each place, get the icon, name and location.
       var bounds = new google.maps.LatLngBounds();
       places.forEach(function(place) {
         var icon = {
@@ -175,25 +173,35 @@
         };
 
         // Create a marker for each place.
-        markers.push(new google.maps.Marker({
-          map: map,
-          icon: icon,
-          title: place.name,
-          position: place.geometry.location
-        }));
+      markers.push(new google.maps.Marker({
+        map: map,
+        icon: icon,
+        title: place.name,
+        position: place.geometry.location
+      }));
 
-        if (place.geometry.viewport) {
+      if (place.geometry.viewport) {
           // Only geocodes have viewport.
-          bounds.union(place.geometry.viewport);
-        } else {
-          bounds.extend(place.geometry.location);
-        }
-      });
-      map.fitBounds(bounds);
-      map.setZoom(15);
+        bounds.union(place.geometry.viewport);
+      } else {
+        bounds.extend(place.geometry.location);
+      }
     });
-  };
+    map.fitBounds(bounds);
+    map.setZoom(15);
+  });
 
+    // map.addressCoordinates = function(address, radius, limit) {
+    //   var addressInput = address;
+    //   var geocoder = new google.maps.Geocoder();
+    //   geocoder.geocode({address: addressInput}, function(results, status) {
+    //     if (status === google.maps.GeocoderStatus.OK) {
+    //       console.log(results);
+    //       map.nearbyLocations(results[0], radius, limit);
+    //     }
+    //   });
+    // };
+  }
   initAutocomplete();
 
   module.map = map;
