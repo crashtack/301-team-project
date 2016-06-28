@@ -1,3 +1,100 @@
-body {
-  
+* {
+  /*border: 1px darkgray solid;*/
+  font-family: Verdana, sans-serif;
+  color: #333333;
+}
+
+header {
+
+}
+
+main {
+
+}
+
+footer {
+  font-size: 70%;
+  text-transform: uppercase;
+  color: #666666;
+}
+
+h1 {
+  font-size: 2em;
+}
+
+h2 {
+  font-size: 1.1em;
+  color: #666666;
+}
+
+h3 {
+  font-size: 1.1em;
+}
+
+h4 {
+  font-size: 1.2em;
+}
+
+#page-wrapper {
+
+}
+
+#main-wrapper {
+
+}
+
+#map-container {
+
+}
+
+#map {
+
+}
+
+#stats-container {
+
+}
+
+#permit-container {
+
+}
+/*
+#spinner-container {
+  display: none;
+}*/
+
+#welcome-text-container {
+
+}
+
+#search-results-container {
+  display: none;
+}
+
+#chosen-permit-container {
+  display: none;
+}
+
+a:link {
+  color: red;
+  text-decoration: none;
+}
+
+a:hover {
+  color: orange;
+  text-decoration: underline;
+}
+
+a:visited {
+  color: red;
+  text-decoration: none;
+}
+
+.smaller {
+  font-size: .8em;
+  text-transform: uppercase;
+}
+
+.stats {
+  font-size: .7em;
 }

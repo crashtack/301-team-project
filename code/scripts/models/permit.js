@@ -4,6 +4,7 @@
     for (keys in opts) {
       this[keys] = opts[keys];
     }
+    this.URL = opts.permit_and_complaint_status_url.url;
   }
 
   Permit.all = [];
@@ -43,6 +44,7 @@
         'longitude FLOAT,' +
         'permit_and_complaint_status_url VARCHAR(512),' +
         'permit_type VARCHAR(100),' +
+        'status VARCHAR(20),' +
         'value INTEGER);'
 
       // callback
@@ -53,8 +55,8 @@
     webDB.execute(
       [
         {
-          'sql': 'INSERT INTO permitdata(address, applicant_name, application_date, application_permit_number, category, contractor, description, latitude, longitude, permit_and_complaint_status_url, permit_type, value) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);',
-          'data': [this.address, this.applicant_name, this.application_date, this.application_permit_number, this.category, this.contractor, this.description, this.latitude, this.longitude, this.permit_and_complaint_status_url, this.permit_type, this.value],
+          'sql': 'INSERT INTO permitdata(address, applicant_name, application_date, application_permit_number, category, contractor, description, latitude, longitude, permit_and_complaint_status_url, permit_type, status, value) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);',
+          'data': [this.address, this.applicant_name, this.application_date, this.application_permit_number, this.category, this.contractor, this.description, this.latitude, this.longitude, this.URL, this.permit_type, this.status, this.value],
         }
       ]
     );

@@ -49,7 +49,7 @@
     bounds: defaultBounds
   };
 
-  infoWindow = new google.maps.InfoWindow({maxWidth: 150});
+  infoWindow = new google.maps.InfoWindow({maxWidth: 200});
 
   google.maps.event.addDomListener(window, 'resize', function() {
     var center = map.getCenter();
@@ -57,10 +57,10 @@
     map.setCenter(center);
   });
 
-  var marker = new google.maps.Marker({
-    position: {lat: 47.618217, lng: -122.351832},
-    map: map
-  });
+  // var marker = new google.maps.Marker({
+  //   position: {lat: 47.618217, lng: -122.351832},
+  //   map: map
+  // });
 
   map.requestLocation = function (address) {
     console.log('test');
@@ -77,7 +77,7 @@
     webDB.execute(query, function(rows) {
       rows.forEach(function(row) {
         if (row.latitude != 'undefined') {
-          var html = '<strong>' + row.address + '</strong> <br/>' + row.description + '<br/> <a href="/info">Save Record</a>';
+          var html = '<strong>' + row.address + '</strong> <br/>' + row.description + '</strong> <br/> Status: ' + row.status + '<br/> <a href="/info">Save Record</a>';
           var marker = new google.maps.Marker({
             position: {lat: row.latitude, lng: row.longitude},
             map: map
@@ -96,6 +96,7 @@
             };
           });
           markers.push(marker);
+          $('#spinner-container').fadeOut();
         }
       });
     });
