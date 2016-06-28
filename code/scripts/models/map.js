@@ -65,9 +65,7 @@
   map.requestLocation = function (address) {
     console.log('test');
     $.get('https://maps.googleapis.com/maps/api/geocode/json?address=' + address + '&key=AIzaSyD_yMtkI6CNN6o8k1FaHEUh9jRx343nYKQ', function(data) {
-      // console.log(data.results[0].geometry.location);
-      // return data.results[0].geometry.location;
-      Permit.calcDistance(data.results[0].geometry.location);
+      return data.results[0].geometry.location;
     });
   };
 
@@ -140,7 +138,7 @@
         marker.setMap(null);
       });
       markers = [];
-      map.requestLocation(places[0].name);
+      var placeCoordinates = map.requestLocation(places[0].name);
       if (places.length == 0) {
         return;
       }

@@ -14,6 +14,26 @@
     <link rel="stylesheet" href="/styles/map.css" />
     <link rel="icon" type="image/x-icon" href="https://i.imgur.com/7v5ASc8.png" />
     <link rel="stylesheet" href="temp.css">
+    <!-- handlebars script for #search-results-container -->
+    <script id="search-results-template" type="text/x-handlebars-template">
+      <h4>{{address}}</h4>
+      <p><strong>Application Date:</strong> {{application_date}}</p>
+      <p><strong>Permit Type:</strong> {{permit_type}}</p>
+      <p><a href="#" class="smaller">SEE MORE &rarr;</a></p>
+    </script>
+    <!-- handlebars script for the #chosen-permit-container -->
+    <script id="chosen-permit-template" type="text/x-handlebars-template">
+      <h3>{{address}}</h3>
+      <p><strong>Applicant Name:</strong> {{applicant_name}}</p>
+      <p><strong>Application Date:</strong> {{applicaiton_date}}</p>
+      <p><strong>Application Permit Number:</strong> {{application_permit_number}}</p>
+      <p><strong>Category:</strong> {{category}}</p>
+      <p><strong>Contractor:</strong> {{contractor}}</p>
+      <p><strong>Description:</strong> {{description}}</p>
+      <p><strong>Permit Type:</strong> {{permit_type}}</p>
+      <p><a href="#">See this permit on the City of Seattle Permitting website</a>.</p>
+      <p><a href="#" class="smaller">CLOSE</a></p>
+    </script>
   </head>
 
   <body>
@@ -46,35 +66,17 @@
           <!-- CHANGEABLE AREA - in mobile under map, in browser to right of map -->
           <section id="permit-container">
             <!-- module: ajax spinner while loading results -->
-            <section id="spinner-container">
+            <section id="spinner-container" class="changeable-area">
               <img src="vendor/assets/gears.gif">
             </section>
             <!-- home page view: basic instruction text -->
-            <section id="welcome-text-container">
+            <section id="welcome-text-container" class="changeable-area">
               <p>Some basic instruction text will appear here, it will be replace with the retrieved permit results when the user enters an address.</p>
             </section>
             <!-- search results view: template with short records return -->
-            <section id="search-results-container">
-              <h4>1234 Fake Street</h4>
-              <p><strong>Issue Date:</strong> Jan. 1, 2016</p>
-              <p><strong>Status:</strong> Permit Issued</p>
-              <p><a href="#" class="smaller">SEE MORE &rarr;</a></p>
-            </section>
+            <section id="search-results-container" class="changeable-area"></section>
             <!-- individual record view: chosen record all result information -->
-            <section id="chosen-permit-container">
-              <h3>1234 Fake Street</h3>
-              <p><strong>Applicant Name:</strong> Ed Neighborly</p>
-              <p><strong>Application Date:</strong> Dec. 1, 2015</p>
-              <p><strong>Issue Date:</strong> Jan. 1, 2016</p>
-              <p><strong>Application Permit Number:</strong> 1234567890</p>
-              <p><strong>Category:</strong> Single Family</p>
-              <p><strong>Contractor:</strong> Nancy Nextdoor</p>
-              <p><strong>Description:</strong> Repair fire damage to an existing single family residence and renovate kitchen and bat, subject to field inspection (STFI.)</p>
-              <p><strong>Permit Type:</strong> </p>
-              <p><strong>Status:</strong> Permit Issued</p>
-              <p><a href="#">See this permit on the City of Seattle Permitting website</a></p>
-              <p><a href="#" class="smaller">CLOSE</a></p>
-            </section>
+            <section id="chosen-permit-container" class="changeable-area"></section>
           </section> <!-- close #permit-container -->
         </section><!-- close #main-wrapper -->
 
