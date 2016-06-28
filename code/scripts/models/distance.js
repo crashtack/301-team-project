@@ -2,7 +2,7 @@
   var CurrentLocation = {};
 
   CurrentLocation.distance = function(lat1, lng1, lat2, lng2) {
-    var lat1Radians = la1.toRadians();
+    var lat1Radians = lat1.toRadians();
     var lat2Radians = lat2.toRadians();
     var deltaLatRadians = (lat2 - lat1).toRadians();
     var deltaLngRadians = (lng2 - lng1).toRadians();
