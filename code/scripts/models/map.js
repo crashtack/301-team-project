@@ -48,7 +48,8 @@
 
   var marker = new google.maps.Marker({
     position: {lat: 47.618217, lng: -122.351832},
-    map: map
+    map: map,
+    title: 'hello there!'
   });
 
   // --------Droping Pins--------------------------
@@ -93,6 +94,19 @@
 
   //Create the autocomplete object.
   var autocomplete = new google.maps.places.Autocomplete(input, searchOptions);
+
+  // https://maps.googleapis.com/maps/api/geocode/json?address=1600+Amphitheatre+Parkway,+Mountain+View,+CA&key=AIzaSyD_yMtkI6CNN6o8k1FaHEUh9jRx343nYKQ
+map.requestLocation = function () {
+  $.get('https://maps.googleapis.com/maps/api/geocode/json?address=1600+Amphitheatre+Parkway,+Mountain+View,+CA&key=AIzaSyD_yMtkI6CNN6o8k1FaHEUh9jRx343nYKQ', function(data) {
+  console.log(data);
+    // data.forEach(function(singlePermit) {
+    //   var permit = new Permit(singlePermit);
+    //   Permit.all.push(permit);
+    //   permit.insertPermit();
+    // });
+    // map.fetchLocations();
+  });
+};
 
   module.map = map;
 })(window);
