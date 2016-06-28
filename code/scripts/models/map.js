@@ -128,7 +128,7 @@
 
     // Bias the SearchBox results towards current map's viewport.
     map.addListener('bounds_changed', function() {
-      map.setZoom(15);
+
       searchBox.setBounds(map.getBounds());
     });
 
@@ -191,6 +191,7 @@
         }
       });
       map.fitBounds(bounds);
+      map.setZoom(15);
     });
   };
 
