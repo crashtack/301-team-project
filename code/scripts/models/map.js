@@ -38,7 +38,7 @@
 
   var map = new google.maps.Map(document.getElementById('map'), mapOptions);
 
-  infoWindow = new google.maps.InfoWindow();
+  infoWindow = new google.maps.InfoWindow({maxWidth: 150});
 
   google.maps.event.addDomListener(window, 'resize', function() {
     var center = map.getCenter();
@@ -57,14 +57,23 @@
       rows.forEach(function(row) {
         // console.log('lat= ', row.latitude);
         // console.log('lon= ', row.longitude);
-        var html = '<b>' + row.address + '</b> <br/>' + row.description;
+        var html = '<strong>' + row.address + '</strong> <br/>' + row.description + '<br/> <a href="/info">Save Record</a>';
         var marker = new google.maps.Marker({
           position: {lat: row.latitude, lng: row.longitude},
           map: map
         });
         google.maps.event.addListener(marker, 'click', function() {
-          infoWindow.setContent(html);
-          infoWindow.open(map, marker);
+          if (infoWindow.getMap()) {
+            infoWindow.close();
+          } else {
+            infoWindow.setContent(html);
+            infoWindow.open(map, marker);
+          }
+        });
+        google.maps.event.addListener(map, 'click', function() {
+          if (infoWindow.getMap()) {
+            infoWindow.close();
+          };
         });
         markers.push(marker);
       });
@@ -113,6 +122,7 @@
 
     // Bias the SearchBox results towards current map's viewport.
     map.addListener('bounds_changed', function() {
+      map.setZoom(15);
       searchBox.setBounds(map.getBounds());
     });
 
@@ -144,12 +154,12 @@
         };
 
         // Create a marker for each place.
-        markers.push(new google.maps.Marker({
-          map: map,
-          icon: icon,
-          title: place.name,
-          position: place.geometry.location
-        }));
+        // markers.push(new google.maps.Marker({
+        //   map: map,
+        //   icon: icon,
+        //   title: place.name,
+        //   position: place.geometry.location
+        // }));
 
         if (place.geometry.viewport) {
           // Only geocodes have viewport.
