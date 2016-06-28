@@ -99,6 +99,8 @@
 map.requestLocation = function () {
   $.get('https://maps.googleapis.com/maps/api/geocode/json?address=1600+Amphitheatre+Parkway,+Mountain+View,+CA&key=AIzaSyD_yMtkI6CNN6o8k1FaHEUh9jRx343nYKQ', function(data) {
   console.log(data);
+  console.log(data.results[0].geometry.location.lat);
+  console.log(data.results[0].geometry.location.lng);
     // data.forEach(function(singlePermit) {
     //   var permit = new Permit(singlePermit);
     //   Permit.all.push(permit);
