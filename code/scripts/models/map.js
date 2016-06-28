@@ -57,10 +57,10 @@
     map.setCenter(center);
   });
 
-  var marker = new google.maps.Marker({
-    position: {lat: 47.618217, lng: -122.351832},
-    map: map
-  });
+  // var marker = new google.maps.Marker({
+  //   position: {lat: 47.618217, lng: -122.351832},
+  //   map: map
+  // });
 
   map.requestLocation = function (address) {
     console.log('test');
@@ -75,7 +75,7 @@
     webDB.execute(query, function(rows) {
       rows.forEach(function(row) {
         if (row.latitude != 'undefined') {
-          var html = '<strong>' + row.address + '</strong> <br/>' + row.description + '<br/> <a href="/info">Save Record</a>';
+          var html = '<strong>' + row.address + '</strong> <br/>' + row.description + '<br/> Status: ' + row.status + ' <a href="/info">See more</a>';
           var marker = new google.maps.Marker({
             position: {lat: row.latitude, lng: row.longitude},
             map: map
@@ -141,6 +141,7 @@
       markers.forEach(function(marker) {
         marker.setMap(null);
       });
+      map.fetchLocations('SELECT * FROM permitdata', mainController.showInitialContent);
       markers = [];
       if (places.length == 0) {
         return;
