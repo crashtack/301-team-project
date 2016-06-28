@@ -1,4 +1,5 @@
 (function(module) {
+  var sortedByDistancePermits = [];
   // Permit constructor
   function Permit (opts) {
     for (keys in opts) {

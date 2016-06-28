@@ -65,7 +65,7 @@
   map.requestLocation = function (address) {
     console.log('test');
     $.get('https://maps.googleapis.com/maps/api/geocode/json?address=' + address + '&key=AIzaSyD_yMtkI6CNN6o8k1FaHEUh9jRx343nYKQ', function(data) {
-      return data.results[0].geometry.location;
+      return CurrentLocation.findDistance(Permit.all, data.results[0].geometry.lat, data.results[0].geometry.lng);
     });
   };
 
@@ -133,12 +133,13 @@
     searchBox.addListener('places_changed', function() {
       var places = searchBox.getPlaces();
       console.log(places);
+      sortedByDistancePermits = map.requestLocation(places[0].name);
+
       // Clear out the old markers.
       markers.forEach(function(marker) {
         marker.setMap(null);
       });
       markers = [];
-      var placeCoordinates = map.requestLocation(places[0].name);
       if (places.length == 0) {
         return;
       }
