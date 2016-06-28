@@ -38,6 +38,17 @@
 
   var map = new google.maps.Map(document.getElementById('map'), mapOptions);
 
+  // -----------------------------------------------
+  // Adding code for Address Search Bar
+  var defaultBounds = new google.maps.LatLngBounds(
+    new google.maps.LatLng(47.000000, -123.000000),
+    new google.maps.LatLng(48.000000, -124.000000)
+  );
+
+  var searchOptions = {
+    bounds: defaultBounds
+  };
+
   infoWindow = new google.maps.InfoWindow({maxWidth: 150});
 
   google.maps.event.addDomListener(window, 'resize', function() {
@@ -71,7 +82,7 @@
             position: {lat: row.latitude, lng: row.longitude},
             map: map
           });
-          google.maps.event.addListener(map, 'click', function() {
+          google.maps.event.addListener(marker, 'click', function() {
             if (infoWindow.getMap()) {
               infoWindow.close();
             } else {
@@ -88,18 +99,6 @@
         }
       });
     });
-  };
-
-  // -----------------------------------------------
-  // Adding code for Address Search Bar
-
-  var defaultBounds = new google.maps.LatLngBounds(
-    new google.maps.LatLng(47.000000, -123.000000),
-    new google.maps.LatLng(48.000000, -124.000000)
-  );
-
-  var searchOptions = {
-    bounds: defaultBounds
   };
 
   // Get the HTML input element for the autocomplete search box.
@@ -146,7 +145,6 @@
           }
         ]
       );
-
     };
 
     searchBox.addListener('places_changed', function() {
