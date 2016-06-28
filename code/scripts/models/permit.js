@@ -10,13 +10,12 @@
 
   Permit.all = [];
 
-  Permit.getData = function() {
+  Permit.getData = function(next) {
     webDB.execute('SELECT * FROM permitdata', function(rows) {
       if (rows.length) {
-        console.log('rows populated');
-        map.fetchLocations('SELECT * FROM permitdata');
+        map.fetchLocations('SELECT * FROM permitdata',next);
       } else {
-        $.get('https://data.seattle.gov/resource/94s7-sxg7.json?$$app_token=gdkMQ6LU9xq4ZonjF6aDFun5l&$limit=10000&permit_type=Construction&action_type=NEW&$where=NOT%20status=%27Permit%20Closed%27', function(data) {
+        $.get('https://data.seattle.gov/resource/94s7-sxg7.json?$$app_token=gdkMQ6LU9xq4ZonjF6aDFun5l&$limit=1000&permit_type=Construction&action_type=NEW&$where=NOT%20status=%27Permit%20Closed%27', function(data) {
           Permit.all = data;
           if (!rows.length) {
             Permit.all.forEach(function(singlePermit) {
@@ -24,7 +23,7 @@
               permit.insertPermit();
             });
           }
-          map.fetchLocations('SELECT * FROM permitdata');
+          map.fetchLocations('SELECT * FROM permitdata',next);
         });
       }
     });
@@ -63,8 +62,8 @@
     );
   };
 
-  Permit.createTable();
-  Permit.getData();
+  // Permit.createTable();
+  // Permit.getData();
 
   module.Permit = Permit;
 })(window);

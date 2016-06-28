@@ -70,7 +70,7 @@
   };
 
   // --------Droping Pins--------------------------
-  map.fetchLocations = function (query) {
+  map.fetchLocations = function (query, next) {
     webDB.execute(query, function(rows) {
       rows.forEach(function(row) {
         if (row.latitude != 'undefined') {
@@ -95,6 +95,7 @@
           markers.push(marker);
         }
       });
+      next();
     });
   };
 
