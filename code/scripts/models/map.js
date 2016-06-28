@@ -38,7 +38,7 @@
 
   var map = new google.maps.Map(document.getElementById('map'), mapOptions);
 
-  infoWindow = new google.maps.InfoWindow();
+  infoWindow = new google.maps.InfoWindow({maxWidth: 150});
 
   google.maps.event.addDomListener(window, 'resize', function() {
     var center = map.getCenter();
@@ -63,9 +63,17 @@
           map: map
         });
         google.maps.event.addListener(marker, 'click', function() {
-          infoWindow.setContent(html);
-          infoWindow.open(map, marker);
-          console.log(infoWindow);
+          if (infoWindow.getMap()) {
+            infoWindow.close();
+          } else {
+            infoWindow.setContent(html);
+            infoWindow.open(map, marker);
+          }
+        });
+        google.maps.event.addListener(map, 'click', function() {
+          if (infoWindow.getMap()) {
+            infoWindow.close();
+          };
         });
         markers.push(marker);
       });
