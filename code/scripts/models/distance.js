@@ -22,29 +22,8 @@
     }).sort(function(a, b) {
       return a.distance - b.distance;
     });
-    distanceArray.forEach(function(a) {
-      Permit.updateDistance(a);
-    });
     return distanceArray;
   };
 
   module.CurrentLocation = CurrentLocation;
 })(window);
-
-// Temp
-Permit.loadAll = function(rows, userLatLng) {
-  Permit.all = rows.map(function(prop) {
-    return new Permit(prop);
-  });
-};
-Permit.prototype.updateDistance = function(currentLocation, callback) {
-  webDB.execute(
-    [
-      {
-        'sql': 'UPDATE permitdata SET distance = ? WHERE id = ?',
-        'data': [this.distance]
-      }
-    ],
-    callback
-  );
-};
