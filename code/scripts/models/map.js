@@ -57,7 +57,7 @@
       rows.forEach(function(row) {
         // console.log('lat= ', row.latitude);
         // console.log('lon= ', row.longitude);
-        var html = '<b>' + row.address + '</b> <br/>' + row.description;
+        var html = '<strong>' + row.address + '</strong> <br/>' + row.description + '<br/> <a href="/info">Save Record</a>';
         var marker = new google.maps.Marker({
           position: {lat: row.latitude, lng: row.longitude},
           map: map
@@ -65,6 +65,7 @@
         google.maps.event.addListener(marker, 'click', function() {
           infoWindow.setContent(html);
           infoWindow.open(map, marker);
+          console.log(infoWindow);
         });
         markers.push(marker);
       });
@@ -145,12 +146,12 @@
         };
 
         // Create a marker for each place.
-        markers.push(new google.maps.Marker({
-          map: map,
-          icon: icon,
-          title: place.name,
-          position: place.geometry.location
-        }));
+        // markers.push(new google.maps.Marker({
+        //   map: map,
+        //   icon: icon,
+        //   title: place.name,
+        //   position: place.geometry.location
+        // }));
 
         if (place.geometry.viewport) {
           // Only geocodes have viewport.
