@@ -65,27 +65,28 @@
   map.fetchLocations = function (query) {
     webDB.execute(query, function(rows) {
       rows.forEach(function(row) {
-        var html = '<strong>' + row.address + '</strong> <br/>' + row.description + '<br/> <a href="/info">Save Record</a>';
-        var marker = new google.maps.Marker({
-          position: {lat: row.latitude, lng: row.longitude},
-          map: map
-        });
-        google.maps.event.addListener(map, 'click', function() {
-          if (infoWindow.getMap()) {
-            infoWindow.close();
-          } else {
-            infoWindow.setContent(html);
-            infoWindow.open(map, marker);
-          }
-        });
-        google.maps.event.addListener(map, 'click', function() {
-          if (infoWindow.getMap()) {
-            infoWindow.close();
-          };
-        });
-        markers.push(marker);
+        if (row.latitude != 'undefined') {
+          var html = '<strong>' + row.address + '</strong> <br/>' + row.description + '<br/> <a href="/info">Save Record</a>';
+          var marker = new google.maps.Marker({
+            position: {lat: row.latitude, lng: row.longitude},
+            map: map
+          });
+          google.maps.event.addListener(map, 'click', function() {
+            if (infoWindow.getMap()) {
+              infoWindow.close();
+            } else {
+              infoWindow.setContent(html);
+              infoWindow.open(map, marker);
+            }
+          });
+          google.maps.event.addListener(map, 'click', function() {
+            if (infoWindow.getMap()) {
+              infoWindow.close();
+            };
+          });
+          markers.push(marker);
+        }
       });
-
     });
   };
 
