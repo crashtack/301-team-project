@@ -57,10 +57,10 @@
     map.setCenter(center);
   });
 
-  var marker = new google.maps.Marker({
-    position: {lat: 47.618217, lng: -122.351832},
-    map: map
-  });
+  // var marker = new google.maps.Marker({
+  //   position: {lat: 47.618217, lng: -122.351832},
+  //   map: map
+  // });
 
   map.requestLocation = function (address) {
     console.log('test');
@@ -96,6 +96,7 @@
             };
           });
           markers.push(marker);
+          $('#spinner-container').fadeOut();
         }
       });
     });
