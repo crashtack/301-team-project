@@ -96,7 +96,8 @@
             };
           });
           markers.push(marker);
-          $('#spinner-container').fadeOut();
+          // $('#spinner-container').fadeOut();
+          // mainController.index();
         }
       });
     });
