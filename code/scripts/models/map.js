@@ -51,18 +51,26 @@
     map: map
   });
 
+  map.requestLocation = function (address) {
+    console.log('test');
+    $.get('https://maps.googleapis.com/maps/api/geocode/json?address=' + address + '&key=AIzaSyD_yMtkI6CNN6o8k1FaHEUh9jRx343nYKQ', function(data) {
+
+      console.log(data.results[0].geometry.location);
+      return data.results[0].geometry.location;
+    });
+    // .done(map.nearbyLocations(data.results[0].geometry.location, 1, 50));
+  };
+
   // --------Droping Pins--------------------------
-  map.fetchLocations = function () {
-    webDB.execute('SELECT * FROM permitdata', function(rows) {
+  map.fetchLocations = function (query) {
+    webDB.execute(query, function(rows) {
       rows.forEach(function(row) {
-        // console.log('lat= ', row.latitude);
-        // console.log('lon= ', row.longitude);
         var html = '<strong>' + row.address + '</strong> <br/>' + row.description + '<br/> <a href="/info">Save Record</a>';
         var marker = new google.maps.Marker({
           position: {lat: row.latitude, lng: row.longitude},
           map: map
         });
-        google.maps.event.addListener(marker, 'click', function() {
+        google.maps.event.addListener(map, 'click', function() {
           if (infoWindow.getMap()) {
             infoWindow.close();
           } else {
@@ -78,8 +86,6 @@
         markers.push(marker);
       });
 
-      console.log(rows);
-          //callback();
     });
   };
 
@@ -122,16 +128,32 @@
 
     // Bias the SearchBox results towards current map's viewport.
     map.addListener('bounds_changed', function() {
-      map.setZoom(15);
+
       searchBox.setBounds(map.getBounds());
     });
 
     var markers = [];
     // Listen for the event fired when the user selects a prediction and retrieve
     // more details for that place.
+    map.nearbyLocations = function(center, radius, limit) {
+      console.log(center);
+      webDB.execute(
+        [
+          {
+            'sql': 'SELECT id, (3959 * acos(cos(radians(?)) * cos(radians(lat)) * cos(radians(lng ) - radians(-?)) + sin(radians(?)) * sin(radians(lat)))) AS distance FROM markers HAVING distance < ? ORDER BY distance LIMIT 0 , 50;',
+            'data': [center.lat, center.lng, center.lat, radius]
+          }
+        ]
+      );
+
+    };
+
     searchBox.addListener('places_changed', function() {
       var places = searchBox.getPlaces();
-
+      console.log(places);
+      var location = map.requestLocation(places.name);
+      console.log(location);
+      // map.nearbyLocations(location, 1, 50);
       if (places.length == 0) {
         return;
       }
@@ -154,12 +176,12 @@
         };
 
         // Create a marker for each place.
-        // markers.push(new google.maps.Marker({
-        //   map: map,
-        //   icon: icon,
-        //   title: place.name,
-        //   position: place.geometry.location
-        // }));
+        markers.push(new google.maps.Marker({
+          map: map,
+          icon: icon,
+          title: place.name,
+          position: place.geometry.location
+        }));
 
         if (place.geometry.viewport) {
           // Only geocodes have viewport.
@@ -169,6 +191,7 @@
         }
       });
       map.fitBounds(bounds);
+      map.setZoom(15);
     });
   };
 
