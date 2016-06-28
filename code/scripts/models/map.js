@@ -105,12 +105,6 @@ map.requestLocation = function (address) {
                   lng: data.results[0].geometry.location.lng};
   console.log(position);
   return position;
-    // data.forEach(function(singlePermit) {
-    //   var permit = new Permit(singlePermit);
-    //   Permit.all.push(permit);
-    //   permit.insertPermit();
-    // });
-    // map.fetchLocations();
   });
 };
 
