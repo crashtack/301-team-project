@@ -116,7 +116,7 @@
   };
 
   // --------Droping Pins--------------------------
-  map.fetchLocations = function (rows, next) {
+  map.dropAllPins = function (rows, next) {
     console.log('row is an: ' + typeof(rows));
     //debugger;
     rows.forEach(function(row) {
