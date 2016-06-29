@@ -44,7 +44,7 @@
         <!-- header w/ project title -->
         <h1>Project Title</h1>
         <!-- welcome text -->
-        <h2>Welcome text for our project goes here. We welcome you to our snooping app for City of Seattle permitting information. Please search for an address below:</h2>
+        <!-- <h2>Welcome text for our project goes here. We welcome you to our snooping app for City of Seattle permitting information. Please search for an address below:</h2> -->
       </header>
 
       <main>
@@ -57,10 +57,6 @@
               <label><input id="pac-input" class="controls" type="text" placeholder="Enter Address" /></label>
             </form>
             <div id="map"></div>
-            <!-- area under map for statistics text -->
-            <section id="stats-container">
-              <p class="stats">Here is where we will display some statistics when a search has been retrieved. It will be blank when Ed first opens the app.</p>
-            </section>
           </section> <!-- close #map-container -->
 
           <!-- CHANGEABLE AREA - in mobile under map, in browser to right of map -->
@@ -83,7 +79,10 @@
       </main>
 
       <footer>
-        &copy; 2016 Nosy Neighbor LLC | 301-team-project | &copy; 2016
+        <section id="stats-container">
+          <p class="stats">Here is where we will display some statistics when a search has been retrieved. It will be blank when Ed first opens the app.</p>
+        </section>
+        <p>&copy; 2016 Nosy Neighbor LLC</p>
       </footer>
 
     </section><!-- close #page-wrapper -->

@@ -35,10 +35,10 @@ h2 {
   font-size: 200%;
   font-weight: 300;
   margin-left: 12px;
-  margin-top: 20px;
-  padding: 20px 11px 0 13px;
+  margin-top: 10px;
+  padding: 0 11px 0 13px;
   text-overflow: ellipsis;
-  /*width: 300px;*/
+  width: 300px;
 }
 
 #pac-input:focus {
@@ -52,9 +52,9 @@ h2 {
     align-items: flex-start;
   }
   #map-container {
-    width: 70%;
+    width: 60%;
   }
   #permit-container  {
-    width: 30%;
+    width: 40%;
   }
 }
