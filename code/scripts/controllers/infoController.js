@@ -2,9 +2,9 @@
   var infoController = {};
 
   infoController.index = function() {
-    // hide the list #
-    // show the single permit #
-    // call initAutocomplete
+    $('#list-container').fadeOut();
+    $('#single-permit-container').show();
+    map.initAutocomplete();
   };
 
   module.infoController = infoController;
