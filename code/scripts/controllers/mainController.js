@@ -1,8 +1,8 @@
 (function(module){
   var mainController = {};
 
-  mainController.loadInitialContent = function(ctx, next) { // are we using this 'next'?
-    console.log('inside loadInitialContent');
+  // mainController.loadInitialContent = function(ctx, next) { // are we using this 'next'?
+    mainController.loadInitialContent = function(ctx) {
     $('#spinner-container').show();
     map.initAutocomplete();
     Permit.createTable();
@@ -13,7 +13,7 @@
     console.log('inside showInitialContent');
     $('#spinner-container').fadeOut();
     //$('.changeable-area').hide();
-    $('#search-results-container').show();
+    $('#list-container').show();
   };
 
   module.mainController = mainController;

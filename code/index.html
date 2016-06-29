@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="/styles/modules.css" />
     <link rel="stylesheet" href="/styles/map.css" />
     <link rel="icon" type="image/x-icon" href="https://i.imgur.com/7v5ASc8.png" />
-    <!-- handlebars script for #search-results-container -->
+    <!-- handlebars script for #list-container -->
     <script id="search-results-template" type="text/x-handlebars-template">
       <section class="permits-search-display">
         <h4>{{address}}</h4>
@@ -22,7 +22,7 @@
         <p><a href="#" class="smaller">SEE MORE &rarr;</a></p>
       </section>
     </script>
-    <!-- handlebars script for the #chosen-permit-container -->
+    <!-- handlebars script for the #single-permit-container -->
     <script id="chosen-permit-template" type="text/x-handlebars-template">
       <div class="chosen-permit-header"><h3>{{address}}</h3><a href="#" class="smaller">CLOSE</a></div>
       <p><strong>Applicant Name:</strong> {{applicant_name}}</p>
@@ -71,9 +71,9 @@
               <p>Some basic instruction text will appear here, it will be replaced with the retrieved permit results when the user enters an address.</p>
             </section>
             <!-- search results view: template with short records return -->
-            <section id="search-results-container" class="changeable-area"></section>
+            <section id="list-container" class="changeable-area"></section>
             <!-- individual record view: chosen record all result information -->
-            <section id="chosen-permit-container" class="changeable-area"></section>
+            <section id="single-permit-container" class="changeable-area"></section>
           </section> <!-- close #permit-container -->
         </section><!-- close #main-wrapper -->
 
