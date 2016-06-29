@@ -108,7 +108,7 @@
   // });
 
   map.requestLocation = function (address) {
-    console.log('test');
+    console.log('entering map.requestLocation');
     $.get('https://maps.googleapis.com/maps/api/geocode/json?address=' + address + '&key=AIzaSyD_yMtkI6CNN6o8k1FaHEUh9jRx343nYKQ', function(data) {
       // On pause until we decide how to use distance
       // return CurrentLocation.findDistance(Permit.all, data.results[0].geometry.lat, data.results[0].geometry.lng);
@@ -117,7 +117,7 @@
 
   // --------Droping Pins--------------------------
   map.dropAllPins = function (rows, next) {
-    console.log('row is an: ' + typeof(rows));
+    console.log('map.dropAllPins row is an: ' + typeof(rows));
     //debugger;
     rows.forEach(function(row) {
       if (row.latitude != 'undefined') {
@@ -156,12 +156,8 @@
 // --- changed the lat/lng
 // -----------------------------------------------------------------------------
   map.initAutocomplete = function () {
-    console.log('have reached inside the google function');
-    // var map = new google.maps.Map(document.getElementById('map'), {
-    //   center: {lat: 47.618217, lng: -122.351832},
-    //   zoom: 13,
-    //   mapTypeId: google.maps.MapTypeId.ROADMAP
-    // });
+    console.log('have reached inside the map.initAutocomplete function');
+
 
     // Create the search box and link it to the UI element.
     var input = document.getElementById('pac-input');
@@ -169,27 +165,17 @@
     map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
 
     // Bias the SearchBox results towards current map's viewport.
-  map.addListener('bounds_changed', function() {
-    searchBox.setBounds(map.getBounds());
-  });
+    map.addListener('bounds_changed', function() {
+      searchBox.setBounds(map.getBounds());
+    });
 
     // Listen for the event fired when the user selects a prediction and retrieve
     // more details for that place.
     searchBox.addListener('places_changed', function() {
       var places = searchBox.getPlaces();
-      console.log(places);
+      console.log('places: ' + places);
       sortedByDistancePermits = map.requestLocation(places[0].name);
 
-      // Clear out the old markers.
-      // markers.forEach(function(marker) {
-      //   marker.setMap(null);
-      // });
-      // map.fetchLocations('SELECT * FROM permitdata', mainController.showInitialContent);
-      // markers = [];
-      // if (places.length == 0) {
-      //   return;
-      // }
-        // For each place, get the icon, name and location.
       var bounds = new google.maps.LatLngBounds();
       places.forEach(function(place) {
         var icon = {
@@ -200,37 +186,21 @@
           scaledSize: new google.maps.Size(25, 25)
         };
 
-        // Create a marker for each place.
-      markers.push(new google.maps.Marker({
-        map: map,
-        icon: icon,
-        title: place.name,
-        position: place.geometry.location
-      }));
-
-      if (place.geometry.viewport) {
-          // Only geocodes have viewport.
-        bounds.union(place.geometry.viewport);
-      } else {
-        bounds.extend(place.geometry.location);
-      }
-    });
+        if (place.geometry.viewport) {
+            // Only geocodes have viewport.
+          bounds.union(place.geometry.viewport);
+        } else {
+          bounds.extend(place.geometry.location);
+        }
+      });
     map.fitBounds(bounds);
     map.setZoom(15);
-  });
+    });
 
-    // map.addressCoordinates = function(address, radius, limit) {
-    //   var addressInput = address;
-    //   var geocoder = new google.maps.Geocoder();
-    //   geocoder.geocode({address: addressInput}, function(results, status) {
-    //     if (status === google.maps.GeocoderStatus.OK) {
-    //       console.log(results);
-    //       map.nearbyLocations(results[0], radius, limit);
-    //     }
-    //   });
-    // };
   }
-  // initAutocomplete();
+
+
+
 
   module.map = map;
 })(window);
