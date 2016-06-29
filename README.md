@@ -15,3 +15,8 @@
 - As software developers we would like to use our newly acquired skills to build a tool that uses and outside database, uses libraries like jQuery, Handlebars, Node and Page.js. We will use good practices for Mobile First, SMACCS, agile development, REST and MVC structure. We will use tools such as Waffle.io for project management, adhere to using Staging branch inside of GitHub and keep a strict structure for making sure all team members are pulling from our staging branch at the same time to avoid merge conflicts.
 
 - As software developers we would like to build our project with stretch goals in mind. We would like to be able to compare records to find out which permits are for constructing a multifamily dwelling where a single family home used to be in order to examine which areas of the city are increasing in density. We would also like to implement geolocation so that Ed has an even easier time snooping on his neighborhood.
+
+
+## Vendor Sources
+
+Google Maps style from Snazzy Maps: https://snazzymaps.com/style/74/becomeadinosaur

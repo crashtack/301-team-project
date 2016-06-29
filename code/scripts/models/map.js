@@ -2,28 +2,73 @@
   var markers = [];
   var stylesArray = [
     {
-      featureType: "all",
+      featureType: "water",
       stylers: [
-        { hue: "#00ffe6" },
-        { saturation: -20 }
+        { gamma: 0.56 },
+        { hue: "#004cff" }
       ]
-    },
-    {
+    },{
+      featureType: "poi",
+      stylers: [
+        { saturation: -2 },
+        { hue: "#1aff00" },
+        { gamma: 0.54 }
+      ]
+    },{
       featureType: "road",
       elementType: "geometry",
       stylers: [
         { lightness: 100 },
         { visibility: "simplified" }
       ]
-    },
-    {
+    },{
       featureType: "road",
       elementType: "labels",
       stylers: [
         { visibility: "off" }
       ]
+    },{
+      featureType: "landscape",
+      stylers: [
+        { hue: "#ff00cc" },
+        { saturation: 59 },
+        { color: "#e6e6e6" }
+      ]
+    },{
+      featureType: "administrative",
+      stylers: [
+        { gamma: 1 },
+        { saturation: -100 },
+        { hue: "#dd00ff" }
+      ]
     }
   ];
+
+  // ORIGINAL MAP STYLE
+  // var stylesArray = [
+  //   {
+  //     featureType: "all",
+  //     stylers: [
+  //       { hue: "#00ffe6" },
+  //       { saturation: -20 }
+  //     ]
+  //   },
+  //   {
+  //     featureType: "road",
+  //     elementType: "geometry",
+  //     stylers: [
+  //       { lightness: 100 },
+  //       { visibility: "simplified" }
+  //     ]
+  //   },
+  //   {
+  //     featureType: "road",
+  //     elementType: "labels",
+  //     stylers: [
+  //       { visibility: "off" }
+  //     ]
+  //   }
+  // ];
 
   var mapOptions = {
     zoom: 15,

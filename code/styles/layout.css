@@ -7,7 +7,7 @@ footer {
 h1 {
   margin: 0px auto;
   text-align: center;
-  padding: 10px;
+  padding: 20px;
 }
 
 h2 {
@@ -15,18 +15,32 @@ h2 {
   margin: 0px auto;
 }
 
+h3 {
+  margin: 0px 0px 20px 0px;
+  padding: 0px;
+}
+
+h4 {
+  margin: 0px 0px 20px 0px;
+  padding: 0px;
+}
+
+p {
+  margin: 0px 0px 10px 0px;
+  padding: 0px;
+}
+
 #page-wrapper {
   width: 90%;
   margin: 1px auto;
 }
 
-#stats-container {
-  margin-left: 15%;
-  margin-right: 15%;
+#map-container {
+
 }
 
 #permit-container {
-  margin-top: 5%;
+  /*margin-top: 5%;*/
 }
 
 #pac-input {
@@ -35,14 +49,37 @@ h2 {
   font-size: 200%;
   font-weight: 300;
   margin-left: 12px;
-  margin-top: 20px;
-  padding: 20px 11px 0 13px;
+  margin-top: 10px;
+  padding: 0 11px 0 13px;
   text-overflow: ellipsis;
-  /*width: 300px;*/
+  width: 300px;
 }
 
 #pac-input:focus {
-  border-color: #4d90fe;
+  border-color: #004cff;
+}
+
+#stats-container {
+  margin-left: 15%;
+  margin-right: 15%;
+}
+
+.permits-search-display {
+  border: 1px solid darkgray;
+  padding: 10px;
+  margin: 10px 0px 10px 0px;
+}
+
+#chosen-permit-container {
+  border: 1px solid darkgray;
+  padding: 10px;
+  margin: 10px 0px 10px 0px;
+  background-color: #cccccc;
+}
+
+.chosen-permit-header {
+  display: flex;
+  justify-content: space-between;
 }
 
 @media only screen and (min-width: 640px) {
@@ -52,9 +89,19 @@ h2 {
     align-items: flex-start;
   }
   #map-container {
-    width: 70%;
+    width: 60%;
   }
   #permit-container  {
-    width: 30%;
+    width: 40%;
+    margin-top: 0%;
+    margin-left: 2%;
+  }
+  .permits-search-display {
+    padding: 10px;
+    margin: 0px 0px 10px 0px;
+  }
+  #chosen-permit-container {
+    padding: 10px;
+    margin: 0px 0px 10px 0px;
   }
 }

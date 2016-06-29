@@ -4,7 +4,7 @@
 <html lang="en">
 
   <head>
-    <title>Nosy Neightbor or Permit Sleuth</title>
+    <title>Nosy Neighbor or Permit Sleuth</title>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="stylesheet" href="/vendor/styles/normalize.css" />
@@ -13,17 +13,18 @@
     <link rel="stylesheet" href="/styles/modules.css" />
     <link rel="stylesheet" href="/styles/map.css" />
     <link rel="icon" type="image/x-icon" href="https://i.imgur.com/7v5ASc8.png" />
-    <link rel="stylesheet" href="temp.css">
     <!-- handlebars script for #search-results-container -->
     <script id="search-results-template" type="text/x-handlebars-template">
-      <h4>{{address}}</h4>
-      <p><strong>Application Date:</strong> {{application_date}}</p>
-      <p><strong>Permit Type:</strong> {{permit_type}}</p>
-      <p><a href="#" class="smaller">SEE MORE &rarr;</a></p>
+      <section class="permits-search-display">
+        <h4>{{address}}</h4>
+        <p><strong>Application Date:</strong> {{application_date}}</p>
+        <p><strong>Permit Type:</strong> {{permit_type}}</p>
+        <p><a href="#" class="smaller">SEE MORE &rarr;</a></p>
+      </section>
     </script>
     <!-- handlebars script for the #chosen-permit-container -->
     <script id="chosen-permit-template" type="text/x-handlebars-template">
-      <h3>{{address}}</h3>
+      <div class="chosen-permit-header"><h3>{{address}}</h3><a href="#" class="smaller">CLOSE</a></div>
       <p><strong>Applicant Name:</strong> {{applicant_name}}</p>
       <p><strong>Application Date:</strong> {{applicaiton_date}}</p>
       <p><strong>Application Permit Number:</strong> {{application_permit_number}}</p>
@@ -44,7 +45,7 @@
         <!-- header w/ project title -->
         <h1>Project Title</h1>
         <!-- welcome text -->
-        <h2>Welcome text for our project goes here. We welcome you to our snooping app for City of Seattle permitting information. Please search for an address below:</h2>
+        <!-- <h2>Welcome text for our project goes here. We welcome you to our snooping app for City of Seattle permitting information. Please search for an address below:</h2> -->
       </header>
 
       <main>
@@ -57,10 +58,6 @@
               <label><input id="pac-input" class="controls" type="text" placeholder="Enter Address" /></label>
             </form>
             <div id="map"></div>
-            <!-- area under map for statistics text -->
-            <section id="stats-container">
-              <p class="stats">Here is where we will display some statistics when a search has been retrieved. It will be blank when Ed first opens the app.</p>
-            </section>
           </section> <!-- close #map-container -->
 
           <!-- CHANGEABLE AREA - in mobile under map, in browser to right of map -->
@@ -71,7 +68,7 @@
             </section>
             <!-- home page view: basic instruction text -->
             <section id="welcome-text-container" class="changeable-area">
-              <p>Some basic instruction text will appear here, it will be replace with the retrieved permit results when the user enters an address.</p>
+              <p>Some basic instruction text will appear here, it will be replaced with the retrieved permit results when the user enters an address.</p>
             </section>
             <!-- search results view: template with short records return -->
             <section id="search-results-container" class="changeable-area"></section>
@@ -83,7 +80,10 @@
       </main>
 
       <footer>
-        &copy; 2016 Nosy Neighbor LLC | 301-team-project | &copy; 2016
+        <section id="stats-container">
+          <p class="stats">Here is where we will display some statistics when a search has been retrieved. It will be blank when Ed first opens the app.</p>
+        </section>
+        <p>&copy; 2016 Nosy Neighbor LLC</p>
       </footer>
 
     </section><!-- close #page-wrapper -->
@@ -100,7 +100,6 @@
     <!-- Model files -->
     <script src="/scripts/models/map.js"></script>
     <script src="/scripts/models/permit.js"></script>
-
     <!-- View files -->
     <script src="/scripts/views/permitView.js"></script>
     <!-- Controller files -->
