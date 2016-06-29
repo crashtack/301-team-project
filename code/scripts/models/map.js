@@ -116,48 +116,46 @@
   };
 
   // --------Droping Pins--------------------------
-  map.fetchLocations = function (query, next) {
-    webDB.execute(query, function(rows) {
-      rows.forEach(function(row) {
-        if (row.latitude != 'undefined') {
-          var html = '<strong>' + row.address + '</strong> <br/>' + row.description + '<br/> Status: ' + row.status + ' <a href="/info">See more</a>';
-          var marker = new google.maps.Marker({
-            position: {lat: row.latitude, lng: row.longitude},
-            map: map
-          });
-          google.maps.event.addListener(marker, 'click', function() {
-            if (infoWindow.getMap()) {
-              infoWindow.close();
-            } else {
-              infoWindow.setContent(html);
-              infoWindow.open(map, marker);
-            }
-          });
-          google.maps.event.addListener(map, 'click', function() {
-            if (infoWindow.getMap()) {
-              infoWindow.close();
-            };
-          });
-          markers.push(marker);
-        }
-      });
-      next();
+  map.fetchLocations = function (rows, next) {
+    console.log('row is an: ' + typeof(rows));
+    //debugger;
+    rows.forEach(function(row) {
+      if (row.latitude != 'undefined') {
+        var html = '<strong>' + row.address + '</strong> <br/>' + row.description + '<br/> Status: ' + row.status + ' <a href="/info">See more</a>';
+        var marker = new google.maps.Marker({
+          position: {lat: row.latitude, lng: row.longitude},
+          map: map
+        });
+        google.maps.event.addListener(marker, 'click', function() {
+          if (infoWindow.getMap()) {
+            infoWindow.close();
+          } else {
+            infoWindow.setContent(html);
+            infoWindow.open(map, marker);
+          }
+        });
+        google.maps.event.addListener(map, 'click', function() {
+          if (infoWindow.getMap()) {
+            infoWindow.close();
+          };
+        });
+        markers.push(marker); //pushes pins to marker, markers is not being uesed, remove
+      }
     });
+    next();
   };
 
   // Get the HTML input element for the autocomplete search box.
   // var input = document.getElementById('pac-input');
   //
   // map.controls[google.maps.ControlPosition.TOP_CENTER].push(input);
-  //
-  // //Create the autocomplete object.
-  // var autocomplete = new google.maps.places.Autocomplete(input, searchOptions);
+  //hOptions);
 
 // -----------------------------------------------------------------------------
 // --- all of the below is from https://developers.google.com/maps/documentation/javascript/examples/places-searchbox#try-it-yourself
 // --- changed the lat/lng
 // -----------------------------------------------------------------------------
-  function initAutocomplete() {
+  map.initAutocomplete = function () {
     console.log('have reached inside the google function');
     // var map = new google.maps.Map(document.getElementById('map'), {
     //   center: {lat: 47.618217, lng: -122.351832},
@@ -183,14 +181,14 @@
       sortedByDistancePermits = map.requestLocation(places[0].name);
 
       // Clear out the old markers.
-      markers.forEach(function(marker) {
-        marker.setMap(null);
-      });
-      map.fetchLocations('SELECT * FROM permitdata', mainController.showInitialContent);
-      markers = [];
-      if (places.length == 0) {
-        return;
-      }
+      // markers.forEach(function(marker) {
+      //   marker.setMap(null);
+      // });
+      // map.fetchLocations('SELECT * FROM permitdata', mainController.showInitialContent);
+      // markers = [];
+      // if (places.length == 0) {
+      //   return;
+      // }
         // For each place, get the icon, name and location.
       var bounds = new google.maps.LatLngBounds();
       places.forEach(function(place) {
@@ -232,7 +230,7 @@
     //   });
     // };
   }
-  initAutocomplete();
+  // initAutocomplete();
 
   module.map = map;
 })(window);
