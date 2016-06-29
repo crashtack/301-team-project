@@ -25,12 +25,12 @@ h1 {
 }
 
 h2 {
-  font-size: 1.1em;
+  font-size: 1.2em;
   color: #666666;
 }
 
 h3 {
-  font-size: 1.1em;
+  font-size: 1.7em;
 }
 
 h4 {
@@ -70,7 +70,7 @@ h4 {
 }
 
 #search-results-container {
-  display: none;
+  /*display: none;*/
 }
 
 #chosen-permit-container {
