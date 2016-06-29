@@ -62,7 +62,7 @@ h4 {
 }
 
 #spinner-container {
-  /*display: none;*/
+  display: none;
 }
 
 #welcome-text-container {
@@ -70,11 +70,11 @@ h4 {
 }
 
 #search-results-container {
-  /*display: none;*/
+  display: none;
 }
 
 #chosen-permit-container {
-  /*display: none;*/
+  display: none;
 }
 
 a:link {
