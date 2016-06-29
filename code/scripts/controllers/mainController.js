@@ -1,19 +1,21 @@
 (function(module){
   var mainController = {};
 
-  // mainController.loadInitialContent = function(ctx, next) { // are we using this 'next'?
-    mainController.loadInitialContent = function(ctx) {
+  mainController.loadInitialContent = function(ctx, next) { // are we using this 'next'?
+    console.log('inside loadInitialContent');
     $('#spinner-container').show();
-    map.initAutocomplete();
-    Permit.createTable();
-    Permit.getData(mainController.showInitialContent);
+    // map.initAutocomplete();
+    theMap.getGeolocation(Permit.createTable);
+
+    //Permit.createTable();
+    //Permit.getData(mainController.showInitialContent);
   };
 
   mainController.showInitialContent = function() {
     console.log('inside showInitialContent');
     $('#spinner-container').fadeOut();
     //$('.changeable-area').hide();
-    $('#list-container').show();
+    $('#search-results-container').show();
   };
 
   module.mainController = mainController;

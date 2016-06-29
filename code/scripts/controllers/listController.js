@@ -1,9 +1,12 @@
 (function(module){
+
   var listController = {};
 
   listController.index = function() {
+    $('#spinner-container').fadeOut();
     $('#welcome-text-container').fadeOut();
-    $('#list-container').show();
+    $('#single-permit-container').fadeOut();
+    $('#list-container').fadeIn();
     map.initAutocomplete();
   };
 
