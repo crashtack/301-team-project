@@ -14,7 +14,7 @@
     webDB.execute('SELECT * FROM permitdata', function(rows) {
       if (rows.length) {
         console.log('Permit.getData: inside if');
-        map.fetchLocations(rows, next);
+        map.dropAllPins(rows, next);
       } else {
         console.log('Permit.getData: inside else');
         //debugger;
@@ -27,7 +27,7 @@
             });
           }
           webDB.execute('SELECT * FROM permitdata', function(rows) {
-            map.fetchLocations(rows, next);
+            map.dropAllPins(rows, next);
           });
         });
       }
