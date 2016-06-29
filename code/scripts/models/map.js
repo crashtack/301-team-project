@@ -121,7 +121,8 @@
     //debugger;
     rows.forEach(function(row) {
       if (row.latitude != 'undefined') {
-        var html = '<strong>' + row.address + '</strong> <br/>' + row.description + '<br/> Status: ' + row.status + ' <a href="/info">See more</a>';
+        // console.log(row.id);
+        var html = '<strong>' + row.address + '</strong> <br/>' + row.description + '<br/> Status: ' + row.status + ' <a href="/info/' + row.id + '">See more</a>';
         var marker = new google.maps.Marker({
           position: {lat: row.latitude, lng: row.longitude},
           map: map
