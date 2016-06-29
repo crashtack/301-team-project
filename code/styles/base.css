@@ -69,12 +69,12 @@ h4 {
   /*display: none;*/
 }
 
-#search-results-container {
+#list-container {
   /*display: none;*/
   background-color: yellow;
 }
 
-#chosen-permit-container {
+#single-permit-container {
   display: none;
 }
 
