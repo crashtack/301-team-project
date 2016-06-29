@@ -1,5 +1,5 @@
 * {
-  /*border: 1px darkgray solid;*/
+  /*border: 1px lightgreen solid;*/
   font-family: Verdana, sans-serif;
   color: #333333;
 }
@@ -16,6 +16,8 @@ footer {
   font-size: 70%;
   text-transform: uppercase;
   color: #666666;
+  margin-top: 60px;
+  margin-bottom: 40px;
 }
 
 h1 {
@@ -64,7 +66,7 @@ h4 {
 }
 
 #welcome-text-container {
-
+  /*display: none;*/
 }
 
 #search-results-container {
@@ -72,7 +74,7 @@ h4 {
 }
 
 #chosen-permit-container {
-  display: none;
+  /*display: none;*/
 }
 
 a:link {

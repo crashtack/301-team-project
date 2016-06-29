@@ -16,10 +16,12 @@
     <link rel="stylesheet" href="temp.css">
     <!-- handlebars script for #search-results-container -->
     <script id="search-results-template" type="text/x-handlebars-template">
-      <h4>{{address}}</h4>
-      <p><strong>Application Date:</strong> {{application_date}}</p>
-      <p><strong>Permit Type:</strong> {{permit_type}}</p>
-      <p><a href="#" class="smaller">SEE MORE &rarr;</a></p>
+      <section class="permits-search-display">
+        <h4>{{address}}</h4>
+        <p><strong>Application Date:</strong> {{application_date}}</p>
+        <p><strong>Permit Type:</strong> {{permit_type}}</p>
+        <p><a href="#" class="smaller">SEE MORE &rarr;</a></p>
+      </section>
     </script>
     <!-- handlebars script for the #chosen-permit-container -->
     <script id="chosen-permit-template" type="text/x-handlebars-template">
@@ -67,7 +69,7 @@
             </section>
             <!-- home page view: basic instruction text -->
             <section id="welcome-text-container" class="changeable-area">
-              <p>Some basic instruction text will appear here, it will be replace with the retrieved permit results when the user enters an address.</p>
+              <p>Some basic instruction text will appear here, it will be replaced with the retrieved permit results when the user enters an address.</p>
             </section>
             <!-- search results view: template with short records return -->
             <section id="search-results-container" class="changeable-area"></section>
