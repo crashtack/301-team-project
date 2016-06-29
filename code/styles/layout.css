@@ -1,3 +1,60 @@
-header {
-  
+
+footer {
+  text-align: center;
+  margin-top: 60px;
+}
+
+h1 {
+  margin: 0px auto;
+  text-align: center;
+  padding: 10px;
+}
+
+h2 {
+  width: 80%;
+  margin: 0px auto;
+}
+
+#page-wrapper {
+  width: 90%;
+  margin: 1px auto;
+}
+
+#stats-container {
+  margin-left: 15%;
+  margin-right: 15%;
+}
+
+#permit-container {
+  margin-top: 5%;
+}
+
+#pac-input {
+  background-color: #fff;
+  font-family: Roboto;
+  font-size: 200%;
+  font-weight: 300;
+  margin-left: 12px;
+  margin-top: 20px;
+  padding: 20px 11px 0 13px;
+  text-overflow: ellipsis;
+  /*width: 300px;*/
+}
+
+#pac-input:focus {
+  border-color: #4d90fe;
+}
+
+@media only screen and (min-width: 640px) {
+  /* change map container and permit container to side by side */
+  #main-wrapper {
+    display: flex;
+    align-items: flex-start;
+  }
+  #map-container {
+    width: 70%;
+  }
+  #permit-container  {
+    width: 30%;
+  }
 }
