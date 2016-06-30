@@ -95,25 +95,24 @@
   theMap.initAutocomplete = function () {
     console.log('inside theMap.initAutocomplete function');
     // Create the search box and link it to the UI element.
-    var input = document.getElementById('pac-input');
-    var searchBox = new google.maps.places.SearchBox(input);
+    input = document.getElementById('search-input');
+    searchBox = new google.maps.places.SearchBox(input);
 
-    //console.log('map: ', map);
-    //console.log('map.controls: ' + google.maps.ControlPosition.TOP_LEFT);
-    //console.log('map.controls: ' + map.controls);
     map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
 
+    searchBox.setBounds(map.getBounds());
     // Bias the SearchBox results towards current map's viewport.
-
-    map.addListener('bounds_changed', function() {
-      searchBox.setBounds(map.getBounds());
-    });
+    // map.addListener('bounds_changed', function() {
+    //   console.log('map bounds_changed listener fired');
+    //   searchBox.setBounds(map.getBounds());
+    // });
 
     // Listen for the event fired when the user selects a prediction and retrieve
     // more details for that place.
     searchBox.addListener('places_changed', function() {
+      console.log('serchBox listener fired!');
       var places = searchBox.getPlaces();
-      console.log('places: ' + places);
+      console.log('places: ', places);
       sortedByDistancePermits = theMap.requestLocation(places[0].name);
 
       var bounds = new google.maps.LatLngBounds();
@@ -135,6 +134,7 @@
       });
     map.fitBounds(bounds);
     map.setZoom(15);
+    // searchBox = new google.maps.places.SearchBox(input);
     });
   };
 
@@ -163,7 +163,6 @@
       //createMap();
       //map.initAutocomplete;
     };
-
 
     navigator.geolocation.getCurrentPosition(success, error, options);
     // createMap(next);

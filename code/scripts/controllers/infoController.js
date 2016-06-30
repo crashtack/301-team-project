@@ -3,10 +3,11 @@
   var infoController = {};
 
   infoController.index = function(ctx) {
-    console.log(ctx);
+    console.log('entering infoController');
+    //console.log(ctx);
     $('.changeable-area').hide();
     $('#single-permit-container').fadeIn();
-    theMap.initAutocomplete();
+    //theMap.initAutocomplete();
     infoView.showSinglePermitInfo(ctx);
   };
 
