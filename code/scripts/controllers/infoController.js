@@ -8,7 +8,7 @@
     $('.changeable-area').hide();
     $('#single-permit-container').fadeIn();
     //theMap.initAutocomplete();
-    $('.pac-input').hide();
+    //$('.pac-input').hide();
     //theMap.searchBoxListener();
     infoView.showSinglePermitInfo(ctx);
   };
