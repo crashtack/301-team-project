@@ -1,33 +1,41 @@
 (function(module) {
+  var sortedByDistancePermits = [];
   // Permit constructor
   function Permit (opts) {
     for (keys in opts) {
       this[keys] = opts[keys];
     }
+    this.URL = opts.permit_and_complaint_status_url.url;
   }
 
   Permit.all = [];
 
-  Permit.getData = function() {
+  Permit.getData = function(next) {
     webDB.execute('SELECT * FROM permitdata', function(rows) {
       if (rows.length) {
-        console.log('rows populated');
-        map.fetchLocations();
+        console.log('Permit.getData: inside if');
+        theMap.dropAllPins(rows, next);
       } else {
-        $.get('https://data.seattle.gov/resource/94s7-sxg7.json?$$app_token=gdkMQ6LU9xq4ZonjF6aDFun5l&$limit=500&permit_type=Construction&action_type=NEW', function(data) {
-        // console.log(data);
-          data.forEach(function(singlePermit) {
-            var permit = new Permit(singlePermit);
-            Permit.all.push(permit);
-            permit.insertPermit();
+        console.log('Permit.getData: inside else');
+        //debugger;
+        $.get('https://data.seattle.gov/resource/94s7-sxg7.json?$$app_token=gdkMQ6LU9xq4ZonjF6aDFun5l&$limit=3000&permit_type=Construction&action_type=NEW&$where=NOT%20status=%27Permit%20Closed%27', function(data) {
+          Permit.all = data;
+          if (!rows.length) {
+            Permit.all.forEach(function(singlePermit) {
+              var permit = new Permit(singlePermit);
+              permit.insertPermit();
+            });
+          }
+          webDB.execute('SELECT * FROM permitdata', function(rows) {
+            theMap.dropAllPins(rows, next);
           });
-          map.fetchLocations();
         });
       }
     });
   };
 
   Permit.createTable = function() {
+    console.log('inside Permit.createTable');
     webDB.execute(
       'CREATE TABLE IF NOT EXISTS permitdata (' +
         'id INTEGER PRIMARY KEY, ' +
@@ -42,25 +50,27 @@
         'longitude FLOAT,' +
         'permit_and_complaint_status_url VARCHAR(512),' +
         'permit_type VARCHAR(100),' +
+        'status VARCHAR(20),' +
         'value INTEGER);'
 
       // callback
     );
+    Permit.getData(mainController.showInitialContent);
   };
 
   Permit.prototype.insertPermit = function () {
     webDB.execute(
       [
         {
-          'sql': 'INSERT INTO permitdata(address, applicant_name, application_date, application_permit_number, category, contractor, description, latitude, longitude, permit_and_complaint_status_url, permit_type, value) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);',
-          'data': [this.address, this.applicant_name, this.application_date, this.application_permit_number, this.category, this.contractor, this.description, this.latitude, this.longitude, this.permit_and_complaint_status_url, this.permit_type, this.value],
+          'sql': 'INSERT INTO permitdata(address, applicant_name, application_date, application_permit_number, category, contractor, description, latitude, longitude, permit_and_complaint_status_url, permit_type, status, value) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);',
+          'data': [this.address, this.applicant_name, this.application_date, this.application_permit_number, this.category, this.contractor, this.description, this.latitude, this.longitude, this.URL, this.permit_type, this.status, this.value],
         }
       ]
     );
   };
 
-  Permit.createTable();
-  Permit.getData();
+  // Permit.createTable();
+  // Permit.getData();
 
   module.Permit = Permit;
 })(window);
