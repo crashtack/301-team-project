@@ -1,12 +1,13 @@
 (function(module){
+
   var mainController = {};
 
   mainController.loadInitialContent = function(ctx, next) { // are we using this 'next'?
     console.log('inside loadInitialContent');
+    $('.changeable-area').hide();
     $('#spinner-container').show();
     // map.initAutocomplete();
     theMap.getGeolocation(Permit.createTable);
-
     //Permit.createTable();
     //Permit.getData(mainController.showInitialContent);
   };
