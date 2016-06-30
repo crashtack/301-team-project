@@ -3,9 +3,7 @@
   var listController = {};
 
   listController.index = function() {
-    $('#spinner-container').fadeOut();
-    $('#welcome-text-container').fadeOut();
-    $('#single-permit-container').fadeOut();
+    $('.changeable-area').hide();
     $('#list-container').fadeIn();
     map.initAutocomplete();
   };
