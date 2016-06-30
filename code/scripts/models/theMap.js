@@ -1,6 +1,8 @@
 (function(module) {
   var theMap = {};
   var markers = [];
+  var map;
+  var geocoder;
   var stylesArray = [
     {
       featureType: "water",
@@ -64,6 +66,7 @@
   };
 
   var mapOptions = {
+
     zoom: 15,
     styles: stylesArray,
     center: new google.maps.LatLng(47.5305046,-122.4032917),
@@ -88,6 +91,7 @@
     }
   };
 
+  map = new google.maps.Map(document.getElementById('map'), mapOptions);
 // -----------------------------------------------------------------------------
 // --- all of the below is from https://developers.google.com/maps/documentation/javascript/examples/places-searchbox#try-it-yourself
 // --- changed the lat/lng
@@ -141,42 +145,42 @@
   //navigator.geolocation.getCurrentPosition(success, error, options);
   // ----------------------------------
 
-  theMap.getGeolocation =  function(next) {
-    console.log('inside theMap.getGeolocation');
 
-    function success(pos) {
-      console.log('entering map.success');
-      var crd = pos.coords;
-      location = {lat:crd.latitude, lng:crd.longitude};
-      console.log('map.success:', location);
-      mapOptions.center = new google.maps.LatLng(location.lat, location.lng);
-      map = new google.maps.Map(document.getElementById('map'), mapOptions);
-      createMap(next);
+  // theMap.getGeolocation =  function(next) {
+  //   console.log('inside theMap.getGeolocation');
+  //
+  //   function success(pos) {
+  //     console.log('entering map.success');
+  //     var crd = pos.coords;
+  //     location = {lat:crd.latitude, lng:crd.longitude};
+  //     console.log('map.success:', location);
+  //     mapOptions.center = new google.maps.LatLng(location.lat, location.lng);
+  //     createMap(next);
+  //
+  //   };
+  //
+  //   function error(err) {
+  //     console.warn('ERROR(' + err.code + '): ' + err.message);
+  //     location = {lat:47.5305046, lng:-122.4032917};
+  //     map = new google.maps.Map(document.getElementById('map'), mapOptions);
+  //     createMap(next);
+  //     //createMap();
+  //     //map.initAutocomplete;
+  //   };
+  //
+  //
+  //   navigator.geolocation.getCurrentPosition(success, error, options);
+  //   // createMap(next);
+  //   // next();
+  // };
 
-    };
-
-    function error(err) {
-      console.warn('ERROR(' + err.code + '): ' + err.message);
-      location = {lat:47.5305046, lng:-122.4032917};
-      map = new google.maps.Map(document.getElementById('map'), mapOptions);
-      createMap(next);
-      //createMap();
-      //map.initAutocomplete;
-    };
-
-
-    navigator.geolocation.getCurrentPosition(success, error, options);
-    // createMap(next);
-    // next();
-  };
-
-  function createMap(next) {
-    console.log('inside map.createMap');
-    //map = new google.maps.Map(document.getElementById('map'), mapOptions);
-    console.log('creating map: ', map);
-    next();
-    theMap.initAutocomplete();
-  };
+  // function createMap(next) {
+  //   console.log('inside map.createMap');
+  //   //map = new google.maps.Map(document.getElementById('map'), mapOptions);
+  //   console.log('creating map: ', map);
+  //   next();
+  //   theMap.initAutocomplete();
+  // };
 
   // -----------------------------------------------
   // Adding code for Address Search Bar
@@ -202,21 +206,21 @@
   //   map: map
   // });
 
-  theMap.requestLocation = function (address) {
-    console.log('entering theMap.requestLocation');
-    $.get('https://maps.googleapis.com/maps/api/geocode/json?address=' + address + '&key=AIzaSyD_yMtkI6CNN6o8k1FaHEUh9jRx343nYKQ', function(data) {
-      // On pause until we decide how to use distance
-      // return CurrentLocation.findDistance(Permit.all, data.results[0].geometry.lat, data.results[0].geometry.lng);
-    });
-  };
+  // theMap.requestLocation = function (address) {
+  //   console.log('entering theMap.requestLocation');
+  //   $.get('https://maps.googleapis.com/maps/api/geocode/json?address=' + address + '&key=AIzaSyD_yMtkI6CNN6o8k1FaHEUh9jRx343nYKQ', function(data) {
+  //     // On pause until we decide how to use distance
+  //     // return CurrentLocation.findDistance(Permit.all, data.results[0].geometry.lat, data.results[0].geometry.lng);
+  //   });
+  // };
 
 
 
   // --------Droping Pins--------------------------
   theMap.dropAllPins = function (rows, next) {
     console.log('theMap.dropAllPins row is an: ' + typeof(rows));
-    console.log('inside theMap.dropAllPins: ' + map);
     map = new google.maps.Map(document.getElementById('map'), mapOptions);
+    console.log('inside theMap.dropAllPins: ' + map);
     rows.forEach(function(row) {
       if (row.latitude != 'undefined') {
         // console.log(row.id);
@@ -251,22 +255,23 @@
   // map.controls[google.maps.ControlPosition.TOP_CENTER].push(input);
   //hOptions);
 theMap.initAutocomplete = function() {
-  var options1 = {
-    map: "#map"
-  }
-  $("#geocomplete").geocomplete(options1)
+  $("#geocomplete").geocomplete(mapOptions)
   .bind("geocode:result", function(event, result){
+    page('/list');
     console.log("Result: " + result.formatted_address);
   })
   .bind("geocode:error", function(event, status){
     console.log("ERROR: " + status);
   })
   .bind("geocode:multiple", function(event, results){
-    console.log("Multiple: " + results.length + " results found");
+    console.log("Multiple: " + results[0] + " results found");
+    page('/list');
   });
 
-  $("#find").click(function(){
+  $("#find").click(function(e){
+    e.preventDefault();
     $("#geocomplete").trigger("geocode");
+
   });
 
 };

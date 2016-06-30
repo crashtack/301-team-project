@@ -13,9 +13,9 @@
     return distance;
   };
 
-  CurrentLocation.findDistance = function(locationPoints, userLat, userLng) {
+  CurrentLocation.findDistance = function(userLat, userLng) {
     var distanceArray = [];
-    distanceArray = locationPoints.map(function(cur) {
+    distanceArray = Permit.all.map(function(cur) {
       var distance = CurrentLocation.distance(userLat, userLng, cur.latitude, cur.longitude);
       cur.distance = distance;
       return cur;

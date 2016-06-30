@@ -4,7 +4,7 @@
 
   infoView.showSinglePermitInfo = function(ctx) {
     console.log('entering infoView.showSinglePermitInfo');
-    
+    $('#geocomplete').attr('value', '');
     $('#single-permit-container').empty();
     webDB.execute(
       [

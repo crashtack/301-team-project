@@ -4,10 +4,11 @@
 
   mainController.loadInitialContent = function(ctx, next) { // are we using this 'next'?
     console.log('inside loadInitialContent');
+    Permit.createTable();
     $('.changeable-area').hide();
     $('#spinner-container').show();
     // map.initAutocomplete();
-    theMap.getGeolocation(Permit.createTable);
+    // theMap.getGeolocation(Permit.createTable);
     //Permit.createTable();
     //Permit.getData(mainController.showInitialContent);
   };
@@ -17,6 +18,8 @@
     $('#spinner-container').fadeOut();
     //$('.changeable-area').hide();
     $('#search-results-container').show();
+    theMap.initAutocomplete();
+
   };
 
   module.mainController = mainController;

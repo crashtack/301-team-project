@@ -2,13 +2,12 @@
 
   var infoController = {};
 
-  infoController.index = function(ctx, next) {
+  infoController.index = function(ctx) {
     console.log(ctx);
-    Permit.createTable();
     $('.changeable-area').hide();
     $('#single-permit-container').fadeIn();
     infoView.showSinglePermitInfo(ctx);
-    next();
+    // next();
   };
 
   module.infoController = infoController;

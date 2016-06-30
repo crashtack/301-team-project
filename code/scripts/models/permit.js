@@ -14,6 +14,7 @@
     webDB.execute('SELECT * FROM permitdata', function(rows) {
       if (rows.length) {
         console.log('Permit.getData: inside if');
+        Permit.all = rows;
         theMap.dropAllPins(rows, next);
       } else {
         console.log('Permit.getData: inside else');
