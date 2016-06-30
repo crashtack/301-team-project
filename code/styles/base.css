@@ -98,10 +98,23 @@ a:visited {
   text-transform: uppercase;
 }
 
+.smaller-right {
+  display: flex;
+  justify-content: flex-end;
+  /*float: right;*/
+  font-size: .8em;
+  text-transform: uppercase;
+}
+
 .stats {
   font-size: .7em;
 }
 
 .changeable-area {
   /* this is what we'll use to hide/show w/ page.js */
+}
+
+.close-gif {
+  height: 10px;
+  padding-right: 5px;
 }
