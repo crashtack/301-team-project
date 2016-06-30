@@ -1,60 +1,119 @@
+
 <!DOCTYPE html>
+
 <html lang="en">
+
   <head>
-    <meta charset="UTF-8">
-    <title>Blog</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="/vendor/styles/normalize.css">
-    <!-- <link rel="stylesheet" href="/styles/icons.css"> -->
-    <link rel="stylesheet" href="/styles/base.css">
-    <link rel="stylesheet" href="/styles/layout.css">
-    <link rel="stylesheet" href="/styles/modules.css">
-    <link rel="stylesheet" href="/styles/map.css">
-    <link rel="icon" type="image/x-icon" href="https://i.imgur.com/7v5ASc8.png">
-    <!-- <link rel="icon" type="image/x-icon" href="https://avatars2.githubusercontent.com/u/18607604?v=3&s=200"> -->
-
-
+    <title>Nosy Neighbor or Permit Sleuth</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="/vendor/styles/normalize.css" />
+    <link rel="stylesheet" href="/styles/base.css" />
+    <link rel="stylesheet" href="/styles/layout.css" />
+    <link rel="stylesheet" href="/styles/modules.css" />
+    <link rel="stylesheet" href="/styles/map.css" />
+    <link rel="icon" type="image/x-icon" href="https://i.imgur.com/7v5ASc8.png" />
+    <!-- handlebars script for #list-container -->
+    <script id="search-results-template" type="text/x-handlebars-template">
+      <section class="permits-search-display">
+        <h4>{{address}}</h4>
+        <p><strong>Application Date:</strong> {{application_date}}</p>
+        <p><strong>Permit Type:</strong> {{permit_type}}</p>
+        <p><a href="#" class="smaller">SEE MORE &rarr;</a></p>
+      </section>
+    </script>
+    <!-- handlebars script for the #single-permit-container -->
+    <script id="chosen-permit-template" type="text/x-handlebars-template">
+      <div class="chosen-permit-header"><h3>{{address}}</h3><a href="#" class="smaller">CLOSE</a></div>
+      <p><strong>Applicant Name:</strong> {{applicant_name}}</p>
+      <p><strong>Application Date:</strong> {{applicaiton_date}}</p>
+      <p><strong>Application Permit Number:</strong> {{application_permit_number}}</p>
+      <p><strong>Category:</strong> {{category}}</p>
+      <p><strong>Contractor:</strong> {{contractor}}</p>
+      <p><strong>Description:</strong> {{description}}</p>
+      <p><strong>Permit Type:</strong> {{permit_type}}</p>
+      <p><a href="#">See this permit on the City of Seattle Permitting website</a>.</p>
+      <p><a href="#" class="smaller">CLOSE</a></p>
+    </script>
   </head>
 
-
   <body>
-  <section id="ajax-spinner">
-    <h2>Look! A spinner! ...</h2>
-    <img src="vendor/assets/gears.gif">
-  </section>
 
-  <main>
-    <input id="pac-input" class="controls" type="text" placeholder="Enter Address">
-    <div id="map"></div>
-    <!-- load in API, with token that you generated from the google api site -->
-    <!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBxQPYVhgMOtRtlWJC1nJ59PYTkr2XtuMU&v=3.exp&libraries=visualization"></script> -->
-    <!-- <script src="map.js"></script> -->
-  </main>
+    <section id="page-wrapper">
+
+      <header>
+        <!-- header w/ project title -->
+        <h1>Project Title</h1>
+        <!-- welcome text -->
+        <!-- <h2>Welcome text for our project goes here. We welcome you to our snooping app for City of Seattle permitting information. Please search for an address below:</h2> -->
+      </header>
+
+      <main>
+
+        <!-- main section wrapper -->
+        <section id="main-wrapper">
+          <!-- map -->
+          <section id="map-container">
+            <form>
+              <label><input id="pac-input" class="controls" type="text" placeholder="Enter Address" /></label>
+            </form>
+            <div id="map"></div>
+          </section> <!-- close #map-container -->
+
+          <!-- CHANGEABLE AREA - in mobile under map, in browser to right of map -->
+          <section id="permit-container">
+            <!-- module: ajax spinner while loading results -->
+            <section id="spinner-container" class="changeable-area">
+              <img src="vendor/assets/gps.gif">
+              <p>Just one sec while we load the data... we are about to drop some pins on that map over there.</p>
+            </section>
+            <!-- home page view: basic instruction text -->
+            <section id="welcome-text-container" class="changeable-area">
+              <p>Some basic instruction text will appear here, it will be replaced with the retrieved permit results when the user enters an address.</p>
+            </section>
+            <!-- search results view: template with short records return -->
+            <section id="list-container" class="changeable-area"></section>
+            <!-- individual record view: chosen record all result information -->
+            <section id="single-permit-container" class="changeable-area"></section>
+          </section> <!-- close #permit-container -->
+        </section><!-- close #main-wrapper -->
+
+      </main>
+
+      <footer>
+        <section id="stats-container">
+          <p class="stats">Here is where we will display some statistics when a search has been retrieved. It will be blank when Ed first opens the app.</p>
+        </section>
+        <p>&copy; 2016 Nosy Neighbor LLC</p>
+      </footer>
+
+    </section><!-- close #page-wrapper -->
+
+    <!-- Vendor files  -->
+    <script src="/vendor/scripts/jquery-2.1.4.js"></script>
+    <script src="/vendor/scripts/handlebars.js"></script>
+    <script src="/vendor/scripts/html5sql.js"></script>
+    <script src="/vendor/scripts/webdb.js"></script>
+    <script src="/vendor/scripts/page.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBvEVYsQmYtS4sZHyp14HWrdSIXcgiEHSc&v=3.exp&libraries=visualization&libraries=places"></script>
+    <script src="https://www.gstatic.com/firebasejs/live/3.0/firebase.js"></script>
+    <script src="/firebaseConfig.js"></script>
+    <!-- Model files -->
+    <script src="/scripts/models/theMap.js"></script>
+    <script src="/scripts/models/permit.js"></script>
+    <!-- View files -->
+    <script src="/scripts/views/permitView.js"></script>
+    <script src="/scripts/views/handlebars_compilers.js"></script>
+    <script src="/scripts/views/infoView.js"></script>
+    <script src="/scripts/views/listView.js"></script>
+    <!-- Controller files -->
+    <!-- <script src="/scripts/controllers/permitController.js"></script> -->
+    <script src="/scripts/controllers/mainController.js"></script>
+    <script src="/scripts/controllers/listController.js"></script>
+    <script src="/scripts/controllers/infoController.js"></script>
+
+    <script src="/scripts/controllers/routes.js"></script>
 
   </body>
 
-
-
-  <footer>
-        &copy; 2016 NosyNeighbor LLC | 301-team-project | ???????-??????
-      </footer>
-
-      <script src="/vendor/scripts/jquery-2.1.4.js"></script>
-      <script src="/vendor/scripts/handlebars.js"></script>
-      <script src="/vendor/scripts/html5sql.js"></script>
-      <script src="/vendor/scripts/webdb.js"></script>
-      <script src="/vendor/scripts/page.js"></script>
-      <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBvEVYsQmYtS4sZHyp14HWrdSIXcgiEHSc&v=3.exp&libraries=visualization&libraries=places"></script>
-      <script src="https://www.gstatic.com/firebasejs/live/3.0/firebase.js"></script>
-      <script src="firebaseConfig.js"></script>
-
-      <!-- Model files: -->
-      <script src="/scripts/models/map.js"></script>
-      <script src="/scripts/models/permit.js"></script>
-      <!-- View files: -->
-      <script src="/scripts/views/permitView.js"></script>
-      <!-- Controller files: -->
-      <script src="/scripts/controllers/permitController.js"></script>
-      <!-- <script src="/scripts/controllers/routes.js"></script> -->
-    </body>
-  </html>
+</html>
