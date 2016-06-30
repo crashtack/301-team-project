@@ -88,31 +88,15 @@
     }
   };
 
-// -----------------------------------------------------------------------------
-// --- all of the below is from https://developers.google.com/maps/documentation/javascript/examples/places-searchbox#try-it-yourself
-// --- changed the lat/lng
-// -----------------------------------------------------------------------------
-  theMap.initAutocomplete = function () {
-    console.log('inside theMap.initAutocomplete function');
-    // Create the search box and link it to the UI element.
-    input = document.getElementById('search-input');
-    searchBox = new google.maps.places.SearchBox(input);
-
-    map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
-
-    searchBox.setBounds(map.getBounds());
-    // Bias the SearchBox results towards current map's viewport.
-    // map.addListener('bounds_changed', function() {
-    //   console.log('map bounds_changed listener fired');
-    //   searchBox.setBounds(map.getBounds());
-    // });
-
+  theMap.searchBoxListener = function () {
+    console.log('entering theMap.searchBoxListener');
     // Listen for the event fired when the user selects a prediction and retrieve
     // more details for that place.
+    //searchBox.
     searchBox.addListener('places_changed', function() {
       console.log('serchBox listener fired!');
       var places = searchBox.getPlaces();
-      console.log('places: ', places);
+      //console.log('places: ', places);
       sortedByDistancePermits = theMap.requestLocation(places[0].name);
 
       var bounds = new google.maps.LatLngBounds();
@@ -132,10 +116,36 @@
           bounds.extend(place.geometry.location);
         }
       });
-    map.fitBounds(bounds);
-    map.setZoom(15);
-    // searchBox = new google.maps.places.SearchBox(input);
+      map.fitBounds(bounds);
+      map.setZoom(15);
+      // searchBox = new google.maps.places.SearchBox(input);
     });
+  };
+
+// -----------------------------------------------------------------------------
+// --- all of the below is from https://developers.google.com/maps/documentation/javascript/examples/places-searchbox#try-it-yourself
+// --- changed the lat/lng
+// -----------------------------------------------------------------------------
+  theMap.initAutocomplete = function () {
+    console.log('inside theMap.initAutocomplete function');
+    // Create the search box and link it to the UI element.
+    var searchBoxOptions = {
+      bounds: defaultBounds,
+      types: ['address']
+    };
+
+    input = document.getElementById('pac-input');
+    searchBox = new google.maps.places.SearchBox(input);
+    map.controls[google.maps.ControlPosition.TOP_LEFT].push(input, searchBoxOptions);
+
+    //searchBox.setBounds(map.getBounds());
+    // Bias the SearchBox results towards current map's viewport.
+    map.addListener('bounds_changed', function() {
+      console.log('map bounds_changed listener fired');
+      searchBox.setBounds(map.getBounds());
+    });
+
+    theMap.searchBoxListener();
   };
 
   //navigator.geolocation.getCurrentPosition(success, error, options);
@@ -173,8 +183,9 @@
     console.log('inside map.createMap');
     //map = new google.maps.Map(document.getElementById('map'), mapOptions);
     console.log('creating map: ', map);
-    next();
     theMap.initAutocomplete();
+    next();
+    // theMap.initAutocomplete();
   };
 
   // -----------------------------------------------
