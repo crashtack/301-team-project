@@ -82,7 +82,7 @@
     console.log('map: ' + map);
     console.log('map.controls: ' + google.maps.ControlPosition.TOP_LEFT);
     console.log('map.controls: ' + map.controls);
-    map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
+    theMap.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
 
     // Bias the SearchBox results towards current map's viewport.
 
