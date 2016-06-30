@@ -30,10 +30,12 @@
       ]
     },{
       featureType: "landscape",
+      elementType: "geometry",
       stylers: [
-        { hue: "#ff00cc" },
-        { saturation: 59 },
-        { color: "#e6e6e6" }
+        { hue: "#ff00b2" },
+        { visibility: "simplified" },
+        { saturation: -100 },
+        { gamma: 0.63 }
       ]
     },{
       featureType: "administrative",
@@ -42,7 +44,13 @@
         { saturation: -100 },
         { hue: "#dd00ff" }
       ]
-    }
+    },{
+      featureType: "administrative",
+      elementType: "labels",
+      stylers: [
+        { visibility: "on" }
+    ]
+  }
   ];
 
   var location = {};
