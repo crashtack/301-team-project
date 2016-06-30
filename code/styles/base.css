@@ -5,7 +5,7 @@
 }
 
 header {
-  
+
 }
 
 main {
@@ -22,7 +22,8 @@ footer {
 
 h1 {
   font-size: 2em;
-  font-family: 'Raleway', sans-serif;
+  font-weight: bold;
+  font-family: 'Poiret One', cursive;
   color: red;
 }
 
