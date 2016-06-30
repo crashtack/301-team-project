@@ -96,9 +96,16 @@ a:visited {
   text-decoration: none;
 }
 
-.smaller {
-  font-size: .8em;
+.close-permit {
+  display: flex;
+  justify-content: flex-end;
+  font-size: 0.8em;
   text-transform: uppercase;
+}
+
+.close-gif {
+  height: 10px;
+  padding-right: 5px;
 }
 
 /*.stats {
