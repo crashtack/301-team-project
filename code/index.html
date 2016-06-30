@@ -24,7 +24,7 @@
     </script>
     <!-- handlebars script for the #single-permit-container -->
     <script id="chosen-permit-template" type="text/x-handlebars-template">
-      <div class="chosen-permit-header"><h3>{{address}}</h3><a href="#" class="smaller">CLOSE</a></div>
+      <div class="chosen-permit-header"><h3>{{address}}</h3><a href="/" class="smaller">CLOSE</a></div>
       <p><strong>Applicant Name:</strong> {{applicant_name}}</p>
       <p><strong>Application Date:</strong> {{application_date}}</p>
       <p><strong>Application Permit Number:</strong> {{application_permit_number}}</p>
@@ -33,8 +33,8 @@
       <p><strong>Description:</strong> {{description}}</p>
       <p><strong>Permit Type:</strong> {{permit_type}}</p>
       <p><strong>Permit Status:</strong> {{status}}</p>
-      <p><a href="#">See this permit on the City of Seattle Permitting website</a>.</p>
-      <p><a href="#" class="smaller">CLOSE</a></p>
+      <p><a href="{{url}}">See this permit on the City of Seattle Permitting website</a>.</p>
+      <p><a href="/" class="smaller">CLOSE</a></p>
     </script>
   </head>
 
@@ -54,10 +54,12 @@
         <!-- main section wrapper -->
         <section id="main-wrapper">
           <!-- map -->
+          <form>
+            <input id="geocomplete" class="controls" type="text" placeholder="Enter Address" /><input id="find" type="button" value="find" />
+          </form>
           <section id="map-container">
-            <form>
-              <label><input id="pac-input" class="controls" type="text" placeholder="Enter Address" /></label>
-            </form>
+
+
             <div id="map"></div>
           </section> <!-- close #map-container -->
 
@@ -97,6 +99,7 @@
     <script src="/vendor/scripts/webdb.js"></script>
     <script src="/vendor/scripts/page.js"></script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBvEVYsQmYtS4sZHyp14HWrdSIXcgiEHSc&v=3.exp&libraries=visualization&libraries=places"></script>
+    <script src="/jquery.geocomplete.js"></script>
     <script src="https://www.gstatic.com/firebasejs/live/3.0/firebase.js"></script>
     <script src="/firebaseConfig.js"></script>
     <!-- Model files -->

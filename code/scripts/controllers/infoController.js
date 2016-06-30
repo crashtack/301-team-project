@@ -2,12 +2,13 @@
 
   var infoController = {};
 
-  infoController.index = function(ctx) {
+  infoController.index = function(ctx, next) {
     console.log(ctx);
+    Permit.createTable();
     $('.changeable-area').hide();
     $('#single-permit-container').fadeIn();
-    theMap.initAutocomplete();
     infoView.showSinglePermitInfo(ctx);
+    next();
   };
 
   module.infoController = infoController;
