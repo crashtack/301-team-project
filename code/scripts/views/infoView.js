@@ -3,6 +3,7 @@
   var infoView = {};
 
   infoView.showSinglePermitInfo = function(ctx) {
+    // map.initAutocomplete();
     $('#single-permit-container').empty();
     webDB.execute(
       [

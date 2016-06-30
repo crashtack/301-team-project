@@ -2,12 +2,14 @@
 
   var listController = {};
 
-  listController.index = function() {
+  listController.index = function(ctx) {
+    console.log('in listController.index');
     $('#spinner-container').fadeOut();
     $('#welcome-text-container').fadeOut();
     $('#single-permit-container').fadeOut();
     $('#list-container').fadeIn();
     map.initAutocomplete();
+    listView.showTenPermits(ctx);
   };
 
   module.listController = listController;

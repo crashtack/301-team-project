@@ -7,7 +7,7 @@
     $('#welcome-text-container').fadeOut();
     $('#list-container').fadeOut();
     $('#single-permit-container').fadeIn();
-    map.initAutocomplete();
+    // map.initAutocomplete();
     infoView.showSinglePermitInfo(ctx);
   };
 
