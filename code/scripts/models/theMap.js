@@ -74,6 +74,17 @@
     zoomControl: true,
     ZoomControlOptions: {
       position: google.maps.ControlPosition.RIGHT_CENTER
+    },
+    // moving mapTypeControl
+    mapTypeControl: true,
+    mapTypeControlOptions: {
+      style: google.maps.MapTypeControlStyle.DEFAULT,
+      position: google.maps.ControlPosition.LEFT_BOTTOM,
+      mapTypeIds: [
+        google.maps.MapTypeId.ROADMAP,
+        google.maps.MapTypeId.TERRAIN,
+        google.maps.MapTypeId.SATELLITE
+      ]
     }
   };
 
@@ -87,9 +98,9 @@
     var input = document.getElementById('pac-input');
     var searchBox = new google.maps.places.SearchBox(input);
 
-    console.log('map: ' + map);
-    console.log('map.controls: ' + google.maps.ControlPosition.TOP_LEFT);
-    console.log('map.controls: ' + map.controls);
+    //console.log('map: ', map);
+    //console.log('map.controls: ' + google.maps.ControlPosition.TOP_LEFT);
+    //console.log('map.controls: ' + map.controls);
     map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
 
     // Bias the SearchBox results towards current map's viewport.
@@ -127,30 +138,6 @@
     });
   };
 
-  // function success(pos) {
-  //   console.log('entering map.success');
-  //   var crd = pos.coords;
-  //   location = {lat:crd.latitude, lng:crd.longitude};
-  //   console.log('map.success:', location);
-  //   mapOptions.center = new google.maps.LatLng(location.lat, location.lng);
-  //   // console.log('Your current position is: ' + pos );
-  //   // console.log('Latitude : ' + crd.latitude);
-  //   // console.log('Longitude: ' + crd.longitude);
-  //   // console.log('More or less ' + crd.accuracy + ' meters.');
-  //   // console.log('location.lat: ' + location.lat);
-  //   // console.log('location.lat: ' + location.lng);
-  //   // console.log('map center' + mapOptions.center);
-  //   //createMap();
-  //   //map.initAutocomplete;
-  // };
-  //
-  // function error(err) {
-  //   console.warn('ERROR(' + err.code + '): ' + err.message);
-  //   location = {lat:47.5305046, lng:-122.4032917};
-  //   //createMap();
-  //   //map.initAutocomplete;
-  // };
-
   //navigator.geolocation.getCurrentPosition(success, error, options);
   // ----------------------------------
 
@@ -165,15 +152,7 @@
       mapOptions.center = new google.maps.LatLng(location.lat, location.lng);
       map = new google.maps.Map(document.getElementById('map'), mapOptions);
       createMap(next);
-      // console.log('Your current position is: ' + pos );
-      // console.log('Latitude : ' + crd.latitude);
-      // console.log('Longitude: ' + crd.longitude);
-      // console.log('More or less ' + crd.accuracy + ' meters.');
-      // console.log('location.lat: ' + location.lat);
-      // console.log('location.lat: ' + location.lng);
-      // console.log('map center' + mapOptions.center);
-      //createMap();
-      //map.initAutocomplete;
+
     };
 
     function error(err) {
