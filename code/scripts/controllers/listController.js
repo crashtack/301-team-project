@@ -8,7 +8,7 @@
      $('#welcome-text-container').fadeOut();
      $('#single-permit-container').fadeOut();
      $('#list-container').fadeIn();
-     // theMap.initAutocomplete();
+    //  theMap.initAutocomplete();
      listView.showTenPermits(ctx);
    };
 
