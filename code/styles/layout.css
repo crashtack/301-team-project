@@ -59,11 +59,11 @@ p {
 #pac-input:focus {
   border-color: #004cff;
 }
-
+/*
 #stats-container {
   margin-left: 15%;
   margin-right: 15%;
-}
+}*/
 
 .permits-search-display {
   border: 1px solid darkgray;
