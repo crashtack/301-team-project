@@ -210,6 +210,8 @@
     });
   };
 
+
+
   // --------Droping Pins--------------------------
   theMap.dropAllPins = function (rows, next) {
     console.log('theMap.dropAllPins row is an: ' + typeof(rows));
@@ -220,6 +222,7 @@
         var html = '<strong>' + row.address + '</strong> <br/>' + row.description + '<br/> Status: ' + row.status + ' <a href="/info/' + row.id + '">See more</a>';
         var marker = new google.maps.Marker({
           position: {lat: row.latitude, lng: row.longitude},
+          animation: google.maps.Animation.DROP,
           map: map
         });
         google.maps.event.addListener(marker, 'click', function() {

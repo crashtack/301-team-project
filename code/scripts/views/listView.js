@@ -4,18 +4,18 @@
 
   listView.showTenPermits = function(ctx) {
     console.log('entering listView.showTenPermits');
-      webDB.execute(
-        [
-          {
-            'sql': 'SELECT * FROM permitdata LIMIT 10',
-          }
-        ],
-        function(ctx) {
-          for (var i = 0; i < ctx.length; i++) {
-            $('#list-container').append(permitsCompiler(ctx[i]));
-          }
+    webDB.execute(
+      [
+        {
+          'sql': 'SELECT * FROM permitdata LIMIT 10',
         }
-      );
+      ],
+      function(ctx) {
+        for (var i = 0; i < ctx.length; i++) {
+          $('#list-container').append(permitsCompiler(ctx[i]));
+        }
+      }
+    );
   };
 
   // listView.showTenPermits();
