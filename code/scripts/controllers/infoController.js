@@ -6,7 +6,7 @@
     $('#welcome-text-container').fadeOut();
     $('#list-container').fadeOut();
     $('#single-permit-container').fadeIn();
-    map.initAutocomplete();
+    theMap.initAutocomplete();
   };
 
   module.infoController = infoController;

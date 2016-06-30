@@ -58,9 +58,9 @@
   var mapOptions = {
     zoom: 15,
     styles: stylesArray,
-    center: new google.maps.LatLng(location.lat,location.lng),
+    center: new google.maps.LatLng(47.5305046,-122.4032917),
     function() {
-      console.log('inside mapOptions: ' + center);
+      console.log('inside mapOptions: ', center);
     },
     mapTypeID: google.maps.MapTypeId.STREET,
     zoomControl: true,
@@ -119,42 +119,74 @@
     });
   };
 
-  function success(pos) {
-    var crd = pos.coords;
-    location = {lat:crd.latitude, lng:crd.longitude};
-    mapOptions.center = new google.maps.LatLng(location.lat, location.lng);
-    // console.log('Your current position is: ' + pos );
-    // console.log('Latitude : ' + crd.latitude);
-    // console.log('Longitude: ' + crd.longitude);
-    // console.log('More or less ' + crd.accuracy + ' meters.');
-    // console.log('location.lat: ' + location.lat);
-    // console.log('location.lat: ' + location.lng);
-    // console.log('map center' + mapOptions.center);
-    //createMap();
-    //map.initAutocomplete;
-  };
-
-  function error(err) {
-    console.warn('ERROR(' + err.code + '): ' + err.message);
-    location = {lat:47.5305046, lng:-122.4032917};
-    //createMap();
-    //map.initAutocomplete;
-  };
+  // function success(pos) {
+  //   console.log('entering map.success');
+  //   var crd = pos.coords;
+  //   location = {lat:crd.latitude, lng:crd.longitude};
+  //   console.log('map.success:', location);
+  //   mapOptions.center = new google.maps.LatLng(location.lat, location.lng);
+  //   // console.log('Your current position is: ' + pos );
+  //   // console.log('Latitude : ' + crd.latitude);
+  //   // console.log('Longitude: ' + crd.longitude);
+  //   // console.log('More or less ' + crd.accuracy + ' meters.');
+  //   // console.log('location.lat: ' + location.lat);
+  //   // console.log('location.lat: ' + location.lng);
+  //   // console.log('map center' + mapOptions.center);
+  //   //createMap();
+  //   //map.initAutocomplete;
+  // };
+  //
+  // function error(err) {
+  //   console.warn('ERROR(' + err.code + '): ' + err.message);
+  //   location = {lat:47.5305046, lng:-122.4032917};
+  //   //createMap();
+  //   //map.initAutocomplete;
+  // };
 
   //navigator.geolocation.getCurrentPosition(success, error, options);
   // ----------------------------------
 
   theMap.getGeolocation =  function(next) {
     console.log('inside theMap.getGeolocation');
+
+    function success(pos) {
+      console.log('entering map.success');
+      var crd = pos.coords;
+      location = {lat:crd.latitude, lng:crd.longitude};
+      console.log('map.success:', location);
+      mapOptions.center = new google.maps.LatLng(location.lat, location.lng);
+      map = new google.maps.Map(document.getElementById('map'), mapOptions);
+      createMap(next);
+      // console.log('Your current position is: ' + pos );
+      // console.log('Latitude : ' + crd.latitude);
+      // console.log('Longitude: ' + crd.longitude);
+      // console.log('More or less ' + crd.accuracy + ' meters.');
+      // console.log('location.lat: ' + location.lat);
+      // console.log('location.lat: ' + location.lng);
+      // console.log('map center' + mapOptions.center);
+      //createMap();
+      //map.initAutocomplete;
+    };
+
+    function error(err) {
+      console.warn('ERROR(' + err.code + '): ' + err.message);
+      location = {lat:47.5305046, lng:-122.4032917};
+      map = new google.maps.Map(document.getElementById('map'), mapOptions);
+      createMap(next);
+      //createMap();
+      //map.initAutocomplete;
+    };
+
+
     navigator.geolocation.getCurrentPosition(success, error, options);
-    createMap(next);
+    // createMap(next);
     // next();
   };
 
   function createMap(next) {
     console.log('inside map.createMap');
-    map = new google.maps.Map(document.getElementById('map'), mapOptions);
-    console.log('creating map: ' + map);
+    //map = new google.maps.Map(document.getElementById('map'), mapOptions);
+    console.log('creating map: ', map);
     next();
     theMap.initAutocomplete();
   };
