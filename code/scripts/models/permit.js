@@ -63,7 +63,7 @@
       [
         {
           'sql': 'INSERT INTO permitdata(address, applicant_name, application_date, application_permit_number, category, contractor, description, latitude, longitude, permit_and_complaint_status_url, permit_type, status, value) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);',
-          'data': [this.address, this.applicant_name, this.application_date, this.application_permit_number, this.category, this.contractor, this.description, this.latitude, this.longitude, this.URL, this.permit_type, this.status, this.value],
+          'data': [this.address, this.applicant_name, this.application_date.split('T')[0], this.application_permit_number, this.category, this.contractor, this.description, this.latitude, this.longitude, this.URL, this.permit_type, this.status, this.value],
         }
       ]
     );

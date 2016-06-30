@@ -3,6 +3,8 @@
   var infoView = {};
 
   infoView.showSinglePermitInfo = function(ctx) {
+    console.log('entering infoView.showSinglePermitInfo');
+    
     $('#single-permit-container').empty();
     webDB.execute(
       [
