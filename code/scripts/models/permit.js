@@ -14,7 +14,7 @@
     webDB.execute('SELECT * FROM permitdata', function(rows) {
       if (rows.length) {
         console.log('Permit.getData: inside if');
-        map.dropAllPins(rows, next);
+        theMap.dropAllPins(rows, next);
       } else {
         console.log('Permit.getData: inside else');
         //debugger;
@@ -27,7 +27,7 @@
             });
           }
           webDB.execute('SELECT * FROM permitdata', function(rows) {
-            map.dropAllPins(rows, next);
+            theMap.dropAllPins(rows, next);
           });
         });
       }
@@ -35,6 +35,7 @@
   };
 
   Permit.createTable = function() {
+    console.log('inside Permit.createTable');
     webDB.execute(
       'CREATE TABLE IF NOT EXISTS permitdata (' +
         'id INTEGER PRIMARY KEY, ' +
@@ -54,6 +55,7 @@
 
       // callback
     );
+    Permit.getData(mainController.showInitialContent);
   };
 
   Permit.prototype.insertPermit = function () {
