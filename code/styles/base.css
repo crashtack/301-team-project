@@ -5,7 +5,7 @@
 }
 
 header {
-
+  
 }
 
 main {
@@ -22,6 +22,8 @@ footer {
 
 h1 {
   font-size: 2em;
+  font-family: 'Raleway', sans-serif;
+  color: red;
 }
 
 h2 {
@@ -53,9 +55,9 @@ h4 {
 
 }
 
-#stats-container {
+/*#stats-container {
 
-}
+}*/
 
 #permit-container {
 
@@ -98,9 +100,9 @@ a:visited {
   text-transform: uppercase;
 }
 
-.stats {
+/*.stats {
   font-size: .7em;
-}
+}*/
 
 .changeable-area {
   /* this is what we'll use to hide/show w/ page.js */
