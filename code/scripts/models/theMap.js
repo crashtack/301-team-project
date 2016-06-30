@@ -76,7 +76,7 @@
       position: google.maps.ControlPosition.RIGHT_CENTER
     },
     // moving mapTypeControl
-    mapTypeControl: true,
+    mapTypeControl: false,
     mapTypeControlOptions: {
       style: google.maps.MapTypeControlStyle.DEFAULT,
       position: google.maps.ControlPosition.LEFT_BOTTOM,
@@ -94,6 +94,10 @@
 // -----------------------------------------------------------------------------
   theMap.initAutocomplete = function () {
     console.log('inside theMap.initAutocomplete function');
+    searchBoxOptions = {
+      bounds: defaultBounds,
+      types: ['address']
+    }
     // Create the search box and link it to the UI element.
     var input = document.getElementById('pac-input');
     var searchBox = new google.maps.places.SearchBox(input);

@@ -46,10 +46,12 @@ p {
 
 #pac-input {
   background-color: #fff;
-  font-family: Roboto;
   font-size: 200%;
   font-weight: 300;
-  margin-left: 12px;
+  margin-left: 10px;
+  /*margin: 0px auto;*/
+  display: flex;
+  justify-content: space-around;
   margin-top: 10px;
   padding: 0 11px 0 13px;
   text-overflow: ellipsis;
