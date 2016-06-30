@@ -131,11 +131,13 @@
     // Create the search box and link it to the UI element.
     var searchBoxOptions = {
       bounds: defaultBounds,
-      types: ['address']
+      types: ['address'],
+      componentRestrictions: {country: 'us'}
     };
 
     input = document.getElementById('pac-input');
-    searchBox = new google.maps.places.SearchBox(input);
+    //searchBox = new google.maps.places.SearchBox(input);
+    searchBox = new google.maps.places.Autocomplete(input, searchBoxOptions);
     map.controls[google.maps.ControlPosition.TOP_LEFT].push(input, searchBoxOptions);
 
     //searchBox.setBounds(map.getBounds());
