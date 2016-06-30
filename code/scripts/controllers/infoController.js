@@ -6,7 +6,7 @@
     console.log(ctx);
     $('.changeable-area').hide();
     $('#single-permit-container').fadeIn();
-    theMap.initAutocomplete();
+    //theMap.initAutocomplete();
     infoView.showSinglePermitInfo(ctx);
   };
 
