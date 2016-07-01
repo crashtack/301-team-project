@@ -1,3 +1,117 @@
-body {
-  
+* {
+  /*border: 1px lightgreen solid;*/
+  font-family: Verdana, sans-serif;
+  color: #333333;
+}
+
+header {
+
+}
+
+main {
+
+}
+
+footer {
+  font-size: 70%;
+  text-transform: uppercase;
+  color: #666666;
+  margin-top: 60px;
+  margin-bottom: 40px;
+}
+
+h1 {
+  font-size: 2em;
+  font-weight: bold;
+  font-family: 'Poiret One', cursive;
+  color: red;
+}
+
+h2 {
+  font-size: 1.2em;
+  color: #666666;
+}
+
+h3 {
+  font-size: 1.7em;
+}
+
+h4 {
+  font-size: 1.2em;
+}
+
+#page-wrapper {
+
+}
+
+#main-wrapper {
+
+}
+
+#map-container {
+
+}
+
+#map {
+
+}
+
+/*#stats-container {
+
+}*/
+
+#permit-container {
+
+}
+
+#spinner-container {
+  /*display: none;*/
+}
+
+#welcome-text-container {
+  /*display: none;*/
+}
+
+#list-container {
+  /*display: none;*/
+  background-color: yellow;
+}
+
+#single-permit-container {
+  /*display: none;*/
+}
+
+a:link {
+  color: red;
+  text-decoration: none;
+}
+
+a:hover {
+  color: orange;
+  text-decoration: underline;
+}
+
+a:visited {
+  color: red;
+  text-decoration: none;
+}
+
+.close-permit {
+  display: flex;
+  justify-content: flex-end;
+  font-size: 0.8em;
+  text-transform: uppercase;
+}
+
+.close-gif {
+  height: 10px;
+  padding-right: 5px;
+}
+
+/*.stats {
+  font-size: .7em;
+}*/
+
+.changeable-area {
+  /* this is what we'll use to hide/show w/ page.js */
 }
