@@ -1,3 +1,150 @@
-header {
-  
+h1 {
+  margin: 0px auto;
+  text-align: center;
+  padding: 20px;
 }
+
+h2 {
+  width: 80%;
+  margin: 0px auto;
+  padding-bottom: 30px;
+}
+
+h3 {
+  margin: 0px 0px 20px 0px;
+  padding: 0px;
+}
+
+h4 {
+  margin: 0px 0px 20px 0px;
+  padding: 0px;
+}
+
+p {
+  margin: 0px 0px 10px 0px;
+  padding: 0px;
+}
+
+footer {
+  text-align: center;
+  margin-top: 60px;
+}
+
+#page-wrapper {
+  width: 100%%;
+  margin: 1px auto;
+}
+
+#map-container {
+  width: 100%;
+}
+
+#permit-container {
+  width: 95%;
+  margin: 0px auto;
+}
+
+#pac-input {
+  background-color: #fff;
+  font-size: 200%;
+  font-weight: 300;
+  margin-left: 10px;
+  display: flex;
+  justify-content: space-around;
+  margin-top: 10px;
+  padding: 0 11px 0 13px;
+  text-overflow: ellipsis;
+  width: 300px;
+}
+
+#pac-input:focus {
+  border-color: #004cff;
+}
+
+#single-permit-container {
+  border: 1px solid darkgray;
+  padding: 10px;
+  margin: 10px 0px 10px 0px;
+  background-color: #cccccc;
+}
+
+.permits-search-display {
+  border: 1px solid darkgray;
+  padding: 10px;
+  margin: 10px 0px 10px 0px;
+  background-color: rgba(57, 119, 213, 0.39);
+}
+
+.money-display {
+  border: 1px solid darkgray;
+  padding: 10px;
+  margin: 10px 0px 10px 0px;
+  background-color: #68B550;
+}
+
+.close-permit {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.close-gif {
+  padding-right: 5px;
+}
+
+@media only screen and (min-width: 720px) {
+  /* change map container and permit container to side by side */
+  h1 {
+    font-size: 3em;
+    font-weight: bold;
+    font-family: 'Poiret One', sans-serif;
+    color: #ff3300;
+  }
+
+  h2 {
+    display: block;
+    font-size: 1.2em;
+    color: #666666;
+    font-family: 'Poiret One', sans-serif;
+  }
+
+  #page-wrapper {
+    width: 90%;
+    margin: 1px auto;
+  }
+
+  #main-wrapper {
+    display: flex;
+    align-items: flex-start;
+  }
+
+  #map-container {
+    width: 60%;
+  }
+
+  #map {
+    margin: 0%;
+    padding: 50% 0;
+    border: 4px solid darkgray;
+  }
+
+  #permit-container  {
+    width: 40%;
+    margin-top: 0%;
+    margin-left: 2%;
+  }
+
+  #single-permit-container {
+    padding: 10px;
+    margin: 0px 0px 10px 0px;
+  }
+
+  .permits-search-display {
+    padding: 10px;
+    margin: 0px 0px 10px 0px;
+    background-color: rgba(57, 119, 213, 0.39);
+  }
+
+  .money-display {
+      padding: 10px;
+      margin: 0px 0px 10px 0px;
+  }
