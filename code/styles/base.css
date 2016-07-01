@@ -49,6 +49,10 @@ a.smaller {
   color: #ff3300;
 }
 
+a.darker {
+  color: #cc3300;
+}
+
 .close-permit {
   font-size: 0.8em;
   text-transform: uppercase;
