@@ -151,6 +151,9 @@
     function success(pos) {
       console.log('entering map.success');
       var crd = pos.coords;
+      console.log(crd);
+      theMap.lat = crd.latitude;
+      theMap.lng = crd.longitude;
       location = {lat:crd.latitude, lng:crd.longitude};
       console.log('map.success:', location);
       mapOptions.center = new google.maps.LatLng(location.lat, location.lng);
@@ -207,8 +210,12 @@
   // });
 
   theMap.requestLocation = function (address) {
-    console.log('entering theMap.requestLocation');
+    console.log('entering theMap.requestLocation' + address);
     $.get('https://maps.googleapis.com/maps/api/geocode/json?address=' + address + '&key=AIzaSyD_yMtkI6CNN6o8k1FaHEUh9jRx343nYKQ', function(data) {
+      console.log(data);
+      theMap.lat = data.results[0].geometry.location.lat;
+      theMap.lng = data.results[0].geometry.location.lng;
+      listView.showTenPermits()
       // On pause until we decide how to use distance
       // return CurrentLocation.findDistance(Permit.all, data.results[0].geometry.lat, data.results[0].geometry.lng);
     });
