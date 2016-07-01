@@ -3,6 +3,25 @@
   color: #333333;
 }
 
+h1 {
+  font-size: 1.5em;
+  font-weight: bold;
+  font-family: 'Poiret One', sans-serif;;
+  color: #ff3300;
+}
+
+h2 {
+  display: none;
+}
+
+h3 {
+  font-size: 1.3em;
+}
+
+h4 {
+  font-size: 1.2em;
+}
+
 footer {
   font-size: 70%;
   text-transform: uppercase;
@@ -11,49 +30,30 @@ footer {
   margin-bottom: 40px;
 }
 
-h1 {
-  font-size: 2em;
-  font-weight: bold;
-  font-family: 'Poiret One', cursive;
-  color: red;
-}
-
-h2 {
-  font-size: 1.2em;
-  color: #666666;
-}
-
-h3 {
-  font-size: 1.7em;
-}
-
-h4 {
-  font-size: 1.2em;
-}
-
 a:link {
-  color: red;
+  color: #ff3300;
   text-decoration: none;
 }
 
 a:hover {
-  color: orange;
+  color: #ff3300;
   text-decoration: underline;
 }
 
 a:visited {
-  color: red;
+  color: #ff3300;
   text-decoration: none;
 }
 
+a.smaller {
+  color: #ff3300;
+}
+
 .close-permit {
-  display: flex;
-  justify-content: flex-end;
   font-size: 0.8em;
   text-transform: uppercase;
 }
 
 .close-gif {
   height: 10px;
-  padding-right: 5px;
 }
