@@ -1,15 +1,6 @@
 * {
-  /*border: 1px lightgreen solid;*/
   font-family: Verdana, sans-serif;
   color: #333333;
-}
-
-header {
-
-}
-
-main {
-
 }
 
 footer {
@@ -40,43 +31,6 @@ h4 {
   font-size: 1.2em;
 }
 
-#page-wrapper {
-
-}
-
-#main-wrapper {
-
-}
-
-#map-container {
-
-}
-
-#map {
-
-}
-
-/*#stats-container {
-
-}*/
-
-#permit-container {
-
-}
-
-#spinner-container {
-  /*display: none;*/
-}
-
-#welcome-text-container {
-  /*display: none;*/
-}
-
-
-#single-permit-container {
-  /*display: none;*/
-}
-
 a:link {
   color: red;
   text-decoration: none;
@@ -102,12 +56,4 @@ a:visited {
 .close-gif {
   height: 10px;
   padding-right: 5px;
-}
-
-/*.stats {
-  font-size: .7em;
-}*/
-
-.changeable-area {
-  /* this is what we'll use to hide/show w/ page.js */
 }

@@ -4,11 +4,8 @@
 
   listController.index = function(ctx) {
     console.log('in listController.index');
-    $('#spinner-container').fadeOut();
-    $('#welcome-text-container').fadeOut();
-    $('#single-permit-container').fadeOut();
+    $('.changeable-area').hide();
     $('#list-container').fadeIn();
-    //  theMap.initAutocomplete();
     listView.showTenPermits(ctx);
   };
 
