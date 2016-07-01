@@ -1,6 +1,6 @@
 (function(module)  {
   var CurrentLocation = {};
-
+  sortedByDistance = [];
   CurrentLocation.distance = function(lat1, lng1, lat2, lng2) {
     console.log('entering CurrentLocation.distance');
     var lat1Radians = toRadians(lat1);
@@ -15,6 +15,7 @@
   };
 
   CurrentLocation.findDistance = function(userLat, userLng) {
+    sortedByDistance;
     console.log('entering CurrentLocation.findDistance');
     var distanceArray = [];
     console.log(userLat, userLng);

@@ -119,7 +119,7 @@
       console.log('entering searchBox.addListener');
       var places = searchBox.getPlaces();
       console.log('places: ', places);
-      sortedByDistancePermits = theMap.requestLocation(places[0].name);
+      sortedByDistancePermits = theMap.requestLocation(places[0].formatted_address);
       page('/list');
       var bounds = new google.maps.LatLngBounds();
       places.forEach(function(place) {
