@@ -10,7 +10,7 @@ var singlePermitCompiler = function(currentSelectedPermit) {
   return permitToDisplay(currentSelectedPermit);
 };
 
-var singlePermitCompiler = function(mostExpensivePermits) {
+var moneyPermitsCompiler = function(mostExpensivePermits) {
   var permitToShow = Handlebars.compile($('#show-me-the-money').text());
-  return permitToDisplay(mostExpensivePermits);
+  return permitToShow(mostExpensivePermits);
 };
