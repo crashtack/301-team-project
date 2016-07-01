@@ -43,6 +43,15 @@
       <p><a href="{{permit_and_complaint_status_url}}" target="_blank">See this permit on the City of Seattle Permitting website</a>.</p>
       <p class="close-permit"><a class="close-permit" href=""><img src="/vendor/assets/redx16.gif" class="close-gif" />CLOSE</a></p>
     </script>
+    <!-- handlebars script for #money-container -->
+    <script id="show-me-the-money" type="text/x-handlebars-template">
+      <h4>{{address}}</h4>
+      <p><strong>Value:</strong> {{value}}</p>
+      <p><strong>Description:</strong> {{description}}</p>
+      <p><strong>Application Date:</strong> {{application_date}}</p>
+      <p><strong>Category:</strong> {{category}}</p>
+      <p><strong>Type:</strong> {{action_type}}</p>
+    </script>
   </head>
 
   <body>
@@ -83,6 +92,7 @@
             <section id="list-container" class="changeable-area"></section>
             <!-- individual record view: chosen record all result information -->
             <section id="single-permit-container" class="changeable-area"></section>
+            <section id="money-container" class="changeable-area"></section>
           </section> <!-- close #permit-container -->
         </section><!-- close #main-wrapper -->
 
