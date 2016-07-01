@@ -71,6 +71,7 @@ p {
   border: 1px solid darkgray;
   padding: 10px;
   margin: 10px 0px 10px 0px;
+  background-color: rgba(57, 119, 213, 0.39);
 }
 
 #single-permit-container {
@@ -113,6 +114,7 @@ p {
   .permits-search-display {
     padding: 10px;
     margin: 0px 0px 10px 0px;
+    background-color: rgba(57, 119, 213, 0.39);
   }
   #single-permit-container {
     padding: 10px;
