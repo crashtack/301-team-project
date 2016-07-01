@@ -234,7 +234,7 @@
         var html = '<strong>' + row.address + '</strong> <br/>' + row.description + '<br/> Status: ' + row.status + '<br /> <a href="/info/' + row.id + '">See more &raquo;</a>';
         var marker = new google.maps.Marker({
           position: {lat: row.latitude, lng: row.longitude},
-          //animation: google.maps.Animation.DROP,
+          animation: google.maps.Animation.DROP,
           map: map
         });
         google.maps.event.addListener(marker, 'click', function() {

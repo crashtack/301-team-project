@@ -9,7 +9,6 @@
     <link rel="stylesheet" href="/vendor/styles/normalize.css" />
     <link rel="stylesheet" href="/styles/base.css" />
     <link rel="stylesheet" href="/styles/layout.css" />
-    <link rel="stylesheet" href="/styles/modules.css" />
     <link rel="stylesheet" href="/styles/map.css" />
     <link href='https://fonts.googleapis.com/css?family=Poiret+One' rel='stylesheet' type='text/css'>
     <link rel="icon" type="image/x-icon" href="https://i.imgur.com/7v5ASc8.png" />
@@ -19,7 +18,7 @@
         <h4>{{address}}</h4>
         <p><strong>Application Date:</strong> {{application_date}}</p>
         <p><strong>Category:</strong> {{category}}</p>
-        <p><strong>Distance:</strong> {{distance}}</p>
+        <p><strong>Applicant Name:</strong> {{applicant_name}}</p>
         <p><a href="/info/{{id}}" class="smaller">SEE MORE &raquo;</p></a>
 
       </section>
@@ -43,7 +42,7 @@
     <script id="show-me-the-money" type="text/x-handlebars-template">
       <section class="money-display">
         <h4>{{address}}</h4>
-        <p><strong>Value:</strong> ${{value}}</p>
+        <p><strong>Value:</strong> {{value}}</p>
         <p><strong>Description:</strong> {{description}}</p>
         <p><strong>Application Date:</strong> {{application_date}}</p>
         <p><strong>Category:</strong> {{category}}</p>
