@@ -9,3 +9,8 @@ var singlePermitCompiler = function(currentSelectedPermit) {
   var permitToDisplay = Handlebars.compile($('#chosen-permit-template').text());
   return permitToDisplay(currentSelectedPermit);
 };
+
+var singlePermitCompiler = function(mostExpensivePermits) {
+  var permitToShow = Handlebars.compile($('#show-me-the-money').text());
+  return permitToDisplay(mostExpensivePermits);
+};
