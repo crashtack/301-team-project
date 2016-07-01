@@ -6,7 +6,7 @@
     $('#list-container').empty();
     console.log('entering listView.showTenPermits');
     var sortedPermitArray = CurrentLocation.findDistance(theMap.lat, theMap.lng);
-    console.log(sortedPermitArray);
+    //console.log(sortedPermitArray);
     for (var i = 0; i < 10; i++) {
       $('#list-container').append(permitsCompiler(sortedPermitArray[i]));
     }
