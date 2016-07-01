@@ -5,5 +5,10 @@
   "hosting": {
     "public": "code"
   },
-  "ignore": [ "**/node_modules/**"]
+  "ignore": [ "**/node_modules/**"],
+  "rewrites": [ {
+    "source": "**",
+    "destination": "/index.html"
+  } ]
+  /*added rewrite section to handle page refreshing*/
 }
