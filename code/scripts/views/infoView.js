@@ -4,7 +4,7 @@
 
   infoView.showSinglePermitInfo = function(ctx) {
     console.log('entering infoView.showSinglePermitInfo');
-    
+
     $('#single-permit-container').empty();
     webDB.execute(
       [
@@ -18,6 +18,8 @@
 
       }
     );
+    console.log('about to go back');
+    infoController.backInStack();
   };
 
   module.infoView = infoView;
