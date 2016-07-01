@@ -1,16 +1,16 @@
-# 301-team-project
+## 301-team-project
 
 # Team Name:
-## Nosy Neighbor Software
+Nosy Neighbor Software
 
 # Project Name:
-## Nosy Neighbor
+Nosy Neighbor
 
 # Team Members:
-David Banks https://github.com/crashtack
-Sarah DeBey https://github.com/prungy88
-Dylan Sanders https://github.com/dylanjsa90
-Megan Reardon https://github.com/meganreardon
+- David Banks https://github.com/crashtack
+- Sarah DeBey https://github.com/prungy88
+- Dylan Sanders https://github.com/dylanjsa90
+- Megan Reardon https://github.com/meganreardon
 
 # User Stories:
 
@@ -23,21 +23,21 @@ Megan Reardon https://github.com/meganreardon
 - As software developers we would like to build our project with stretch goals in mind. We would like to implement geolocation so that Ed has an even easier time snooping on his neighborhood.
 
 
-## Vendor Sources
+# Vendor Sources
 
-Google Maps style from Snazzy Maps: https://snazzymaps.com/style/74/becomeadinosaur
-Ajax spinner from Loading.io: http://loading.io/
+- Google Maps style from Snazzy Maps: https://snazzymaps.com/style/74/becomeadinosaur
+- Ajax spinner from Loading.io: http://loading.io/
 
-## Tools and libraries
+# Tools and libraries
 
-GitHub
-Waffle.io
-Normalize.css
-Handlebars
-html5sql
-jQuery
-Page.js
-webdb
-Google Maps API
-City of Seattle Permitting API
-Firebase
+- GitHub
+- Waffle.io
+- Normalize.css
+- Handlebars
+- html5sql
+- jQuery
+- Page.js
+- webdb
+- Google Maps API
+- City of Seattle Permitting API
+- Firebase
