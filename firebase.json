@@ -5,5 +5,14 @@
   "hosting": {
     "public": "code"
   },
-  "ignore": [ "**/node_modules/**"]
+  "ignore": [ "**/node_modules/**"],
+  "redirects": [ {
+    "source" : "/list",
+    "destination" : "/",
+    "type" : 301
+  }, {
+    "source" : "/info/*",
+    "destination" : "list",
+    "type" : 301
+  } ]
 }
