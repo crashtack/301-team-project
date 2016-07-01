@@ -3,7 +3,7 @@
 <html lang="en">
 
   <head>
-    <title>Nosy Neighbor or Permit Sleuth</title>
+    <title>Nosy Neighbor</title>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="stylesheet" href="/vendor/styles/normalize.css" />
@@ -15,12 +15,6 @@
     <link rel="icon" type="image/x-icon" href="https://i.imgur.com/7v5ASc8.png" />
     <!-- handlebars script for #list-container -->
     <script id="search-results-template" type="text/x-handlebars-template">
-      <!-- <section class="list-sort-elements">
-        <form method="post">
-          <input type="radio" name="sort-by-distance" value="Distance" />Sort the list below by distance
-          <input type="radio" name="sort-by-value" value="Value" />Sort the list below by value
-        </form>
-      </section> -->
       <section class="permits-search-display">
         <h4>{{address}}</h4>
         <p><strong>Application Date:</strong> {{application_date}}</p>
@@ -45,12 +39,13 @@
     </script>
     <!-- handlebars script for #money-container -->
     <script id="show-me-the-money" type="text/x-handlebars-template">
-      <h4>{{address}}</h4>
-      <p><strong>Value:</strong> {{value}}</p>
-      <p><strong>Description:</strong> {{description}}</p>
-      <p><strong>Application Date:</strong> {{application_date}}</p>
-      <p><strong>Category:</strong> {{category}}</p>
-      <p><strong>Type:</strong> {{action_type}}</p>
+      <section class="money-display">
+        <h4>{{address}}</h4>
+        <p><strong>Value:</strong> ${{value}}</p>
+        <p><strong>Description:</strong> {{description}}</p>
+        <p><strong>Application Date:</strong> {{application_date}}</p>
+        <p><strong>Category:</strong> {{category}}</p>
+      </section>
     </script>
   </head>
 
@@ -59,17 +54,13 @@
     <section id="page-wrapper">
 
       <header>
-        <!-- header w/ project title -->
-        <a href="/list"><h1>NOSY NEIGHBOR</h1></a>
-        <!-- welcome text -->
-        <!-- <h2>Welcome text for our project goes here. We welcome you to our snooping app for City of Seattle permitting information. Please search for an address below:</h2> -->
+        <a href="/"><h1>NOSY NEIGHBOR</h1></a>
+        <h2>We welcome you to our snooping app for City of Seattle permitting information. Please search for an address below:</h2>
       </header>
 
       <main>
-
         <!-- main section wrapper -->
         <section id="main-wrapper">
-          <!-- map -->
           <section id="map-container">
             <form>
               <label><input id="pac-input" class="controls" type="text" placeholder="Enter Address" /></label>
@@ -79,23 +70,18 @@
 
           <!-- CHANGEABLE AREA - in mobile under map, in browser to right of map -->
           <section id="permit-container">
-            <!-- module: ajax spinner while loading results -->
             <section id="spinner-container" class="changeable-area">
               <img src="vendor/assets/gps.gif">
               <p>Just one sec while we load the data... we are about to drop some pins on that map over there.</p>
             </section>
-            <!-- home page view: basic instruction text -->
             <section id="welcome-text-container" class="changeable-area">
               <p>Welcome to Nosy Neighbor! The app where you can find out what buildings are being built in your neighborhood. Search by your current location or enter an address in the search bar to look for current building permits near you. Finally, an app for the voyeur in everyone!</p>
             </section>
-            <!-- search results view: template with short records return -->
             <section id="list-container" class="changeable-area"></section>
-            <!-- individual record view: chosen record all result information -->
             <section id="single-permit-container" class="changeable-area"></section>
             <section id="money-container" class="changeable-area"></section>
           </section> <!-- close #permit-container -->
         </section><!-- close #main-wrapper -->
-
       </main>
 
       <footer>
@@ -125,12 +111,10 @@
     <script src="/scripts/views/listView.js"></script>
     <script src="/scripts/views/moneyView.js"></script>
     <!-- Controller files -->
-    <!-- <script src="/scripts/controllers/permitController.js"></script> -->
     <script src="/scripts/controllers/mainController.js"></script>
     <script src="/scripts/controllers/listController.js"></script>
     <script src="/scripts/controllers/infoController.js"></script>
     <script src="/scripts/controllers/moneyController.js"></script>
-
     <script src="/scripts/controllers/routes.js"></script>
 
   </body>
