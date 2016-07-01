@@ -17,6 +17,7 @@
 
       }
     );
+    infoController.backInStack();
   };
 
   module.infoView = infoView;
