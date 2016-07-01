@@ -19,7 +19,7 @@
         <h4>{{address}}</h4>
         <p><strong>Application Date:</strong> {{application_date}}</p>
         <p><strong>Category:</strong> {{category}}</p>
-        <a href="/info/{{id}}" class="smaller"><p>SEE MORE &raquo;</p></a>
+        <p><a href="/info/{{id}}" class="smaller">SEE MORE &raquo;</p></a>
       </section>
     </script>
     <!-- handlebars script for the #single-permit-container -->
@@ -45,6 +45,7 @@
         <p><strong>Description:</strong> {{description}}</p>
         <p><strong>Application Date:</strong> {{application_date}}</p>
         <p><strong>Category:</strong> {{category}}</p>
+        <p><a href="{{permit_and_complaint_status_url}}" target="_blank" class="darker">See this permit on the City of Seattle Permitting website</a>.</p>
       </section>
     </script>
   </head>
@@ -54,8 +55,8 @@
     <section id="page-wrapper">
 
       <header>
-        <a href="/"><h1>NOSY NEIGHBOR</h1></a>
-        <h2>We welcome you to our snooping app for City of Seattle permitting information. Please search for an address below:</h2>
+        <h1>NOSY NEIGHBOR</h1>
+        <h2>Welcome to Nosy Neighbor! The app where you can find out what buildings are being built in your neighborhood. Finally, an app for the voyeur in everyone!</h2>
       </header>
 
       <main>
@@ -71,11 +72,11 @@
           <!-- CHANGEABLE AREA - in mobile under map, in browser to right of map -->
           <section id="permit-container">
             <section id="spinner-container" class="changeable-area">
-              <img src="vendor/assets/gps.gif">
+              <img src="/vendor/assets/gps.svg">
               <p>Just one sec while we load the data... we are about to drop some pins on that map over there.</p>
             </section>
             <section id="welcome-text-container" class="changeable-area">
-              <p>Welcome to Nosy Neighbor! The app where you can find out what buildings are being built in your neighborhood. Search by your current location or enter an address in the search bar to look for current building permits near you. Finally, an app for the voyeur in everyone!</p>
+              <p>Search by your current location or enter an address in the search bar in the map to look for current building permits near you.</p>
             </section>
             <section id="list-container" class="changeable-area"></section>
             <section id="single-permit-container" class="changeable-area"></section>
@@ -85,7 +86,7 @@
       </main>
 
       <footer>
-        <p><a href="/">Take Me Home</a> &middot; <a href="/money">Want to peek at the most expensive permits?</a></p>
+        <p><a href="/">Take Me Home</a> &#8226; <a href="/money">Want to peek at the most expensive permits?</a></p>
         <p>&copy; 2016 Nosy Neighbor LLC</p>
       </footer>
 
