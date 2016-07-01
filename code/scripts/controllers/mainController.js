@@ -17,6 +17,7 @@
     $('#spinner-container').fadeOut();
     //$('.changeable-area').hide();
     $('#search-results-container').show();
+    page('/list');
   };
 
   module.mainController = mainController;
