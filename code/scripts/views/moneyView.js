@@ -2,6 +2,7 @@
   var moneyView = {};
 
   moneyView.sortByValue = function() {
+    ('#money-container').empty();
     $('#single-permit-container').empty();
     $('#list-container').empty();
     $('#money-container').fadeIn();
