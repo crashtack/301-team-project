@@ -2,19 +2,21 @@
   var moneyView = {};
 
   moneyView.sortByValue = function() {
-    $('#money-container').empty();
     $('#single-permit-container').empty();
     $('#list-container').empty();
     $('#money-container').fadeIn();
-    var sortedByValue = Permit.all.sort(function(a, b) {
-      return b.value - a.value;
-    });
-    var temp = sortedByValue.slice(0, 20);
-    temp.forEach(function(a) {
-      a.value = formatDollar(a.value);
-      $('#money-container').append(moneyPermitsCompiler(a));
-    });
-    console.log(sortedByValue);
+    if ($('#money-container').children().length === 0) {
+      var sortedByValue = Permit.all.sort(function(a, b) {
+        return b.value - a.value;
+      });
+      var temp = sortedByValue.slice(0, 20);
+      temp.forEach(function(a) {
+        if (typeof(a.value) === 'number') {
+          a.value = formatDollar(a.value);
+          $('#money-container').append(moneyPermitsCompiler(a));
+        }
+      });
+    }
   };
 
   // A function to format the value to $
