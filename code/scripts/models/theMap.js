@@ -116,8 +116,9 @@
     // Listen for the event fired when the user selects a prediction and retrieve
     // more details for that place.
     searchBox.addListener('places_changed', function() {
+      console.log('entering searchBox.addListener');
       var places = searchBox.getPlaces();
-      console.log('places: ' + places);
+      console.log('places: ', places);
       sortedByDistancePermits = theMap.requestLocation(places[0].name);
       page('/list');
       var bounds = new google.maps.LatLngBounds();
@@ -210,7 +211,7 @@
   // });
 
   theMap.requestLocation = function (address) {
-    console.log('entering theMap.requestLocation' + address);
+    console.log('entering theMap.requestLocation', address);
     $.get('https://maps.googleapis.com/maps/api/geocode/json?address=' + address + '&key=AIzaSyD_yMtkI6CNN6o8k1FaHEUh9jRx343nYKQ', function(data) {
       console.log(data);
       theMap.lat = data.results[0].geometry.location.lat;
@@ -225,15 +226,15 @@
 
   // --------Droping Pins--------------------------
   theMap.dropAllPins = function (rows, next) {
-    console.log('theMap.dropAllPins row is an: ' + typeof(rows));
-    console.log('inside theMap.dropAllPins: ' + map);
+    //console.log('theMap.dropAllPins row is an: ' + typeof(rows));
+    //console.log('inside theMap.dropAllPins: ' + map);
     rows.forEach(function(row) {
       if (row.latitude != 'undefined') {
         // console.log(row.id);
         var html = '<strong>' + row.address + '</strong> <br/>' + row.description + '<br/> Status: ' + row.status + '<br /> <a href="/info/' + row.id + '">See more &raquo;</a>';
         var marker = new google.maps.Marker({
           position: {lat: row.latitude, lng: row.longitude},
-          animation: google.maps.Animation.DROP,
+          //animation: google.maps.Animation.DROP,
           map: map
         });
         google.maps.event.addListener(marker, 'click', function() {

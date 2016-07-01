@@ -2,6 +2,7 @@
   var CurrentLocation = {};
 
   CurrentLocation.distance = function(lat1, lng1, lat2, lng2) {
+    console.log('entering CurrentLocation.distance');
     var lat1Radians = toRadians(lat1);
     var lat2Radians = toRadians(lat2);
     var deltaLatRadians = toRadians((lat2 - lat1));
@@ -14,10 +15,11 @@
   };
 
   CurrentLocation.findDistance = function(userLat, userLng) {
+    console.log('entering CurrentLocation.findDistance');
     var distanceArray = [];
     console.log(userLat, userLng);
     distanceArray = Permit.all.map(function(cur) {
-      console.log(userLat + ' ' + userLng + ' ' + cur);
+      //console.log(userLat + ' ' + userLng + ' ' + cur);
       var distance = CurrentLocation.distance(userLat, userLng, cur.latitude, cur.longitude);
       cur.distance = distance;
       return cur;
