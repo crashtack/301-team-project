@@ -2,5 +2,6 @@
 page('/', mainController.loadInitialContent);
 page('/list', listController.index);
 page('/info/:id', infoController.index);
+page('/money', moneyController.loadValueList);
 
 page();
