@@ -15,11 +15,17 @@
     <link rel="icon" type="image/x-icon" href="https://i.imgur.com/7v5ASc8.png" />
     <!-- handlebars script for #list-container -->
     <script id="search-results-template" type="text/x-handlebars-template">
+      <!-- <section class="list-sort-elements">
+        <form method="post">
+          <input type="radio" name="sort-by-distance" value="Distance" />Sort the list below by distance
+          <input type="radio" name="sort-by-value" value="Value" />Sort the list below by value
+        </form>
+      </section> -->
       <section class="permits-search-display">
         <h4>{{address}}</h4>
         <p><strong>Application Date:</strong> {{application_date}}</p>
-        <p><strong>Permit Type:</strong> {{permit_type}}</p>
-        <a href="/info/{{id}}" class="smaller"><p>SEE MORE &rarr;</p></a>
+        <p><strong>Category:</strong> {{category}}</p>
+        <a href="/info/{{id}}" class="smaller"><p>SEE MORE &raquo;</p></a>
       </section>
     </script>
     <!-- handlebars script for the #single-permit-container -->
@@ -83,7 +89,7 @@
       </main>
 
       <footer>
-        <p><a href="/">Take Me Home</a></p>
+        <p><a href="/">Take Me Home</a> &middot; <a href="/money">Want to peek at the most expensive permits?</a></p>
         <p>&copy; 2016 Nosy Neighbor LLC</p>
       </footer>
 
