@@ -66,7 +66,7 @@
   var mapOptions = {
     zoom: 15,
     styles: stylesArray,
-    center: new google.maps.LatLng(47.5305046,-122.4032917),
+    center: new google.maps.LatLng(47.618217, -122.351832),
     function() {
       console.log('inside mapOptions: ', center);
     },
@@ -165,7 +165,7 @@
 
     function error(err) {
       console.warn('ERROR(' + err.code + '): ' + err.message);
-      location = {lat:47.5305046, lng:-122.4032917};
+      location = {lat:47.618217, lng:-122.351832};
       map = new google.maps.Map(document.getElementById('map'), mapOptions);
       createMap(next);
       //createMap();
