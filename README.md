@@ -6,6 +6,9 @@ Nosy Neighbor Software
 # Project Name:
 Nosy Neighbor
 
+# Link to final project:
+https://projectstage-a6114.firebaseapp.com/
+
 # Team Members:
 - David Banks https://github.com/crashtack
 - Sarah DeBey https://github.com/prungy88
@@ -25,7 +28,7 @@ Nosy Neighbor
 
 # Vendor Sources
 
-- Google Maps style from Snazzy Maps: https://snazzymaps.com/style/74/becomeadinosaur
+- Google Maps Styled Maps Wizard: http://googlemaps.github.io/js-samples/styledmaps/wizard/index.html
 - Ajax spinner from Loading.io: http://loading.io/
 
 # Tools and libraries
